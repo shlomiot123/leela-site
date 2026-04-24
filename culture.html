@@ -27,9 +27,25 @@
   .upcoming-card { grid-template-columns:70px 1fr; }
 }
 @media(max-width:640px){
-  .program-cards { grid-template-columns:1fr; }
-  .upcoming-card { grid-template-columns:60px 1fr; gap:14px; padding:16px 16px; }
-  .prog-card-img { height:170px; }
+  /* Reduce hero height */
+  .page-hero { min-height:36vh !important; }
+  .page-hero-overlay { background:linear-gradient(to top, rgba(247,243,238,0.98) 0%, rgba(247,243,238,0.85) 55%, rgba(247,243,238,0.2) 100%) !important; }
+
+  /* Program cards: compact horizontal layout */
+  .program-cards { grid-template-columns:1fr; gap:10px; }
+  .prog-card { display:flex; flex-direction:row; min-height:0; }
+  .prog-card-img { width:110px; height:auto; min-height:110px; flex-shrink:0; object-fit:cover; transition:none; }
+  .prog-card:hover .prog-card-img { transform:none; }
+  .prog-card-body { padding:14px 12px; flex:1; min-width:0; }
+  .prog-title { font-size:1.05rem; margin-bottom:4px; }
+  .prog-desc { font-size:0.78rem; line-height:1.55; margin-bottom:8px;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .prog-meta { font-size:0.72rem; gap:2px; }
+  .prog-card-body .btn-primary { padding:7px 14px !important; font-size:0.76rem !important; margin-top:8px !important; }
+
+  /* Upcoming events: stack button below */
+  .upcoming-card { grid-template-columns:56px 1fr; gap:10px; padding:12px 14px; }
+  .upcoming-card > button.btn-primary { grid-column:1/-1; width:100% !important; padding:9px 0 !important; }
 }
 </style>
 </head>
@@ -182,21 +198,6 @@
   </div>
 </section>
 
-<!-- GALLERY -->
-<section style="background:var(--cream)">
-  <div class="section-inner">
-    <span class="section-label reveal">אווירה</span>
-    <h2 class="section-title reveal d1">ב<em>לילא</em> מרגישים</h2>
-    <div class="gallery-masonry reveal">
-      <img src="https://static.wixstatic.com/media/7ea0d3_fa94732217804aebb374ef1eac3ce11a~mv2.jpeg" alt="" loading="lazy"/>
-      <img src="https://static.wixstatic.com/media/7ea0d3_fc62b8bb566e4cfe86070bbccc6af6b4~mv2.jpg" alt="" loading="lazy"/>
-      <img src="https://static.wixstatic.com/media/7ea0d3_c9223845059b48eeb9db6ecb1bc102e8~mv2.jpg" alt="" loading="lazy"/>
-      <img src="https://static.wixstatic.com/media/38a166_30cf096aa5cf4180a2c3c27f84aacd9f~mv2.png" alt="" loading="lazy"/>
-      <img src="https://static.wixstatic.com/media/7ea0d3_4b6422c5966448598501a9d9d69a41e0~mv2.jpeg" alt="" loading="lazy"/>
-      <img src="https://static.wixstatic.com/media/7ea0d3_e372021615b04f58b15e1a0d51d81599~mv2.jpeg" alt="" loading="lazy"/>
-    </div>
-  </div>
-</section>
 <div id="lightbox" class="lightbox"><span class="lightbox-close">×</span><img src="" alt=""/></div>
 
 <div class="quote-section">

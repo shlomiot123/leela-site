@@ -85,6 +85,27 @@
   .inquiry-form-wrap{padding:28px 20px}
 }
 @media(max-width:640px){
+  /* Hero: strong overlay so dark text is readable across full height */
+  .page-hero-overlay { background:linear-gradient(to top, rgba(247,243,238,0.97) 0%, rgba(247,243,238,0.82) 60%, rgba(247,243,238,0.35) 100%) !important; }
+
+  /* Hero stat row: wrap & collapse separator */
+  .page-hero-content > div[style*="gap:32px"] { gap:14px !important; flex-wrap:wrap; justify-content:center; }
+  .page-hero-content > div[style*="gap:32px"] > div[style*="width:1px"] { display:none !important; }
+
+  /* Space section: 1-col */
+  .section-inner > div[style*="grid-template-columns:1fr 1fr"] { display:block !important; }
+  .section-inner > div[style*="grid-template-columns:1fr 1fr"] > .img-mosaic { margin-top:28px; }
+
+  /* Inquiry form outer: 1-col */
+  .section-inner > div[style*="grid-template-columns:1fr 1.1fr"] { display:block !important; }
+  .section-inner > div[style*="grid-template-columns:1fr 1.1fr"] > div:first-child { margin-bottom:32px; }
+  .inquiry-form-wrap { margin-top:0; }
+
+  /* Form inner grids: 1-col */
+  .inquiry-form-wrap form > div[style*="grid-template-columns:1fr 1fr"] { display:flex !important; flex-direction:column !important; }
+
+  /* Amenities: already 1-col at 900px */
+
   .pe-hero-content{padding:32px 20px}
   .pe-hero-content h1{font-size:clamp(2rem,8vw,3rem)}
   .pe-hero-content p{font-size:0.95rem}
@@ -93,14 +114,14 @@
   .pe-stats{gap:10px;margin:20px 0 28px}
   .pe-stat span{font-size:2rem}
   .pe-stat-sep{display:none}
-  .etype-grid{grid-template-columns:1fr;margin-top:28px}
-  .etype-card{aspect-ratio:16/9}
+  .etype-grid{grid-template-columns:1fr 1fr;margin-top:28px}
+  .etype-card{aspect-ratio:4/3}
   .pricing-grid{grid-template-columns:1fr}
   .pc-rate{font-size:2.4rem}
   .price-card{padding:28px 22px}
   .inquiry-form-wrap{padding:22px 18px}
   .img-mosaic{grid-template-columns:1fr 1fr}
-  .img-mosaic img{height:140px}
+  .img-mosaic img{height:130px}
 }
 </style>
 </head>
@@ -237,7 +258,7 @@
       <div class="reveal">
         <span class="section-label">המרחב</span>
         <h2 class="section-title" style="margin-top:10px">מקום <em>ייחודי</em><br/>בלב הטבע</h2>
-        <p class="section-body" style="margin-bottom:32px">לילא שוכנת באזור תעשייה סלית, צמוד לשמורת טבע ב-Sharon. אולם יפהפה עם מערכת סאונד איכותית, מרפסת מוקפת צמחייה, גינה וגישה לשבילי טבע.</p>
+        <p class="section-body" style="margin-bottom:32px">לילא שוכנת באזור תעשייה סלית, צמוד לשמורת טבע בשרון. אולם יפהפה עם מערכת סאונד איכותית, מרפסת מוקפת צמחייה, גינה וגישה לשבילי טבע.</p>
         <p class="section-body" style="margin-bottom:32px">האווירה שקטה, האוויר נקי, והמרחב גמיש לכל תצורה — ניתן לשלב פנים וחוץ, לקשט, להביא קייטרינג ולעצב כל חוויה שתרצו.</p>
       </div>
       <div class="img-mosaic reveal-scale">

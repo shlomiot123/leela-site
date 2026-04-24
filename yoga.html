@@ -40,12 +40,32 @@
   .pricing-grid { grid-template-columns:repeat(2,1fr); }
 }
 @media(max-width:640px){
-  .style-cards { grid-template-columns:1fr; }
+  /* Hero: stronger overlay so text is readable */
+  .page-hero-overlay { background:linear-gradient(to top, rgba(247,243,238,0.98) 0%, rgba(247,243,238,0.88) 50%, rgba(247,243,238,0.25) 100%) !important; }
+
+  /* Style cards: compact 2-col */
+  .style-cards { grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
+  .style-card { padding:16px 12px; }
+  .style-icon { width:36px; height:36px; margin-bottom:8px; }
+  .style-icon svg { width:36px !important; height:36px !important; }
+  .style-name { font-size:1.1rem; margin-bottom:6px; }
+  .style-desc { font-size:0.78rem; line-height:1.55; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .style-meta { gap:6px; }
+  .style-badge { font-size:0.64rem; padding:3px 7px; }
+
+  /* Pricing */
   .pricing-grid { grid-template-columns:1fr 1fr; }
-  .instructor-card { padding:18px; gap:14px; }
-  .avatar-circle { width:60px; height:60px; }
-  .sched-wrap { font-size:0.82rem; }
-  .schedule-table th, .schedule-table td { padding:10px 10px; }
+
+  /* Instructors */
+  .instructor-card { padding:16px; gap:12px; }
+  .avatar-circle { width:56px; height:56px; }
+  .instructor-name { font-size:1rem; }
+  .instructor-bio { font-size:0.78rem; line-height:1.55; }
+
+  /* Schedule: compact */
+  .sched-wrap { font-size:0.76rem; }
+  .schedule-table th, .schedule-table td { padding:8px 7px; white-space:nowrap; }
+  .schedule-chip { font-size:0.7rem; padding:2px 7px; }
 }
 @media(max-width:480px){
   .pricing-grid { grid-template-columns:1fr; }
