@@ -78,16 +78,29 @@
   .etype-grid{grid-template-columns:1fr 1fr}
   .amenities-list{grid-template-columns:1fr}
   .amenity-item:nth-child(odd){border-left:none}
-  .amenity-item{padding:20px 16px}
-  .pricing-grid{grid-template-columns:1fr}
+  .amenity-item{padding:18px 16px}
+  .pricing-grid{grid-template-columns:1fr 1fr}
   .img-mosaic{grid-template-columns:1fr;grid-template-rows:auto}
   .img-mosaic img{height:180px}
   .inquiry-form-wrap{padding:28px 20px}
 }
-@media(max-width:600px){
-  .etype-grid{grid-template-columns:1fr}
-  .pe-stats{gap:12px}
+@media(max-width:640px){
+  .pe-hero-content{padding:32px 20px}
+  .pe-hero-content h1{font-size:clamp(2rem,8vw,3rem)}
+  .pe-hero-content p{font-size:0.95rem}
+  .pe-ctas{flex-direction:column;gap:10px}
+  .pe-ctas a{width:100%;text-align:center;justify-content:center}
+  .pe-stats{gap:10px;margin:20px 0 28px}
+  .pe-stat span{font-size:2rem}
   .pe-stat-sep{display:none}
+  .etype-grid{grid-template-columns:1fr;margin-top:28px}
+  .etype-card{aspect-ratio:16/9}
+  .pricing-grid{grid-template-columns:1fr}
+  .pc-rate{font-size:2.4rem}
+  .price-card{padding:28px 22px}
+  .inquiry-form-wrap{padding:22px 18px}
+  .img-mosaic{grid-template-columns:1fr 1fr}
+  .img-mosaic img{height:140px}
 }
 </style>
 </head>

@@ -23,8 +23,13 @@
 .upcoming-card:hover { border-color:var(--sage); transform:translateX(-5px); box-shadow:var(--shadow); }
 
 @media(max-width:900px){
-  .program-cards { grid-template-columns:1fr; }
+  .program-cards { grid-template-columns:1fr 1fr; }
   .upcoming-card { grid-template-columns:70px 1fr; }
+}
+@media(max-width:640px){
+  .program-cards { grid-template-columns:1fr; }
+  .upcoming-card { grid-template-columns:60px 1fr; gap:14px; padding:16px 16px; }
+  .prog-card-img { height:170px; }
 }
 </style>
 </head>

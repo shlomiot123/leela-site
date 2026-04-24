@@ -350,7 +350,7 @@ function initParallax() {
   if (!hero) return;
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    if (y < window.innerHeight) hero.style.transform = `scale(1.08) translateY(${y * 0.15}px)`;
+    if (y < window.innerHeight) hero.style.transform = `scaleX(-1) translateY(${y * 0.12}px)`;
   }, { passive: true });
 }
 

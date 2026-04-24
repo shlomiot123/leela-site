@@ -824,23 +824,134 @@ footer {
 
 /* ─── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  section { padding: 64px 32px; }
+  .hero-content { padding: 0 32px; }
 }
+
 @media (max-width: 768px) {
-  section { padding: 60px 24px; }
-  #nav { padding: 0 20px; }
+  :root { --nav-h: 60px; }
+  /* ── Global ── */
+  section { padding: 48px 20px; }
+  .section-header { margin-bottom: 36px; }
+  .section-header-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .section-inner { padding: 0; }
+
+  /* ── Nav ── */
+  #nav { padding: 0 20px; height: 60px; }
   .nav-links, .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
-  .hero-content { grid-template-columns: 1fr; }
+  .nav-mobile-menu { top: 60px; }
+  .nav-mobile-menu a { font-size: 1.7rem; gap: 28px; }
+
+  /* ── Hero (index) ── */
   .hero-lotus-wrap { display: none; }
-  .gallery-masonry { columns: 2; }
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .event-row { grid-template-columns: 72px 1fr; }
+  .gallery-masonry { columns: 2; column-gap: 10px; }
+  .gallery-masonry img { margin-bottom: 10px; }
+
+  /* ── About ── */
+  .about-imgs { height: 260px; }
+  .about-img-main { width: 80%; height: 75%; }
+  .about-img-sub { width: 52%; height: 44%; }
+  .pillars-row { grid-template-columns: 1fr; gap: 16px; }
+
+  /* ── Services ── */
+  .svcs-photo-grid { grid-template-columns: 1fr 1fr; }
+
+  /* ── Events ── */
+  .event-row { grid-template-columns: 64px 1fr; gap: 14px; padding: 16px 18px; }
   .event-expand { display: none; }
-  .page-hero { padding: 60px 24px; }
+  .event-detail-panel { padding: 0 18px; }
+  .event-detail-panel.open { padding: 18px 18px 22px; }
+  .event-meta-row { gap: 8px; font-size: 0.75rem; }
+
+  /* ── Calendar ── */
+  .cal-wrap { border-radius: 12px; }
+  .cal-header { padding: 14px 18px; }
+  .cal-month-title { font-size: 1.1rem; }
+  .cal-grid { padding: 10px 8px; }
+  .cal-day { aspect-ratio: unset; min-height: 48px; padding: 3px 3px; }
+  .cal-day-num { font-size: 0.7rem; }
+  .cal-day-label { font-size: 0.42rem; padding: 1px 3px; }
+  .cal-day-labels { gap: 1px; margin-top: 1px; }
+  .cal-weekday { font-size: 0.6rem; }
+
+  /* Calendar popup → bottom sheet on mobile */
+  .cal-day-popup {
+    position: fixed !important;
+    bottom: 0 !important; top: auto !important;
+    left: 0 !important; right: 0 !important;
+    width: 100% !important; max-height: 75vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%) scale(1) !important;
+    transform-origin: bottom center;
+    opacity: 1 !important;
+  }
+  .cal-day-popup.visible {
+    transform: translateY(0) scale(1) !important;
+  }
+
+  /* ── Quote ── */
+  .quote-section { padding: 52px 20px; }
+
+  /* ── Contact / Forms ── */
+  .contact-grid { grid-template-columns: 1fr; gap: 0; }
   .form-row-2 { grid-template-columns: 1fr; }
+
+  /* ── Footer ── */
+  footer { padding: 44px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-col { padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+  .footer-desc { max-width: 100%; font-size: 0.82rem; }
+
+  /* ── Page hero (sub-pages) ── */
+  .page-hero { padding: 52px 20px 36px; min-height: 38vh; }
+  .page-hero-content h1 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+
+  /* ── Pricing ── */
+  .price-card.featured { transform: none; }
+  .price-card { padding: 28px 22px; }
+
+  /* ── Instructor cards ── */
+  .instructor-card { padding: 18px; gap: 14px; }
+  .instructor-avatar { width: 56px; height: 56px; }
+
+  /* ── Modals ── */
+  .modal-box { padding: 28px 20px; }
 }
+
 @media (max-width: 480px) {
-  h1 { font-size: 2.4rem; }
+  /* ── Global ── */
+  section { padding: 40px 16px; }
+  h2 { font-size: 1.9rem; }
+  .section-label { font-size: 0.66rem; letter-spacing: 0.22em; }
+
+  /* ── Nav ── */
+  .nav-mobile-menu a { font-size: 1.5rem; }
+
+  /* ── Services ── */
+  .svcs-photo-grid { grid-template-columns: 1fr; }
+  .svc-photo-card { aspect-ratio: 4/3; }
+
+  /* ── Events ── */
+  .event-row { padding: 14px 14px; gap: 12px; }
+  .event-date-badge { padding: 7px 5px; }
+  .event-date-badge .day { font-size: 1.45rem; }
+  .event-date-badge .month { font-size: 0.58rem; }
+  .event-title-main { font-size: 1.05rem; }
+
+  /* ── Calendar ── */
+  .cal-day { min-height: 42px; }
+  .cal-day-label { font-size: 0.38rem; }
+
+  /* ── Gallery ── */
   .gallery-masonry { columns: 1; }
+
+  /* ── Buttons ── */
+  .btn-primary { padding: 13px 28px; font-size: 0.84rem; }
+  .btn-outline  { padding: 12px 24px; font-size: 0.82rem; }
+
+  /* ── Footer ── */
+  .footer-social a { width: 34px; height: 34px; }
 }
