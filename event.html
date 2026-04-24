@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>אירוע — לילא</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="css/style.css"/>
+<style>
+#event-hero { min-height:60vh; display:flex; align-items:flex-end; padding:80px 48px; position:relative; overflow:hidden; margin-top:var(--nav-h); }
+.event-hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.event-hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(61,53,48,0.85) 0%, rgba(61,53,48,0.3) 60%, transparent 100%); }
+.event-hero-content { position:relative; z-index:2; max-width:1200px; margin:0 auto; width:100%; }
+.event-category-tag { display:inline-block; padding:6px 18px; border-radius:20px; font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px; }
+.event-hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,4rem); font-weight:300; color:white; margin-bottom:12px; }
+.event-hero-meta { display:flex; gap:20px; flex-wrap:wrap; }
+.event-hero-meta span { font-size:0.9rem; color:rgba(255,255,255,0.8); }
+
+.event-layout { display:grid; grid-template-columns:1fr 380px; gap:48px; align-items:start; }
+.event-sticky { position:sticky; top:90px; }
+.ticket-box { background:var(--white); border-radius:var(--radius-l); padding:36px; box-shadow:var(--shadow-l); border:1px solid rgba(196,168,130,0.15); }
+.ticket-price { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--brown); }
+.ticket-price span { font-size:1rem; color:var(--brown-l); }
+.spots-bar { height:6px; border-radius:3px; background:var(--cream2); margin:8px 0 4px; overflow:hidden; }
+.spots-fill { height:100%; border-radius:3px; background:var(--sage); transition:width 0.5s ease; }
+
+.detail-section { margin-bottom:40px; }
+.detail-section h3 { font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--brown); margin-bottom:16px; }
+.detail-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.detail-list li { font-size:0.9rem; color:var(--brown-l); display:flex; align-items:center; gap:10px; }
+.detail-list li::before { content:'✦'; color:var(--sage); font-size:0.7rem; flex-shrink:0; }
+.info-row { display:flex; gap:16px; padding:14px 0; border-bottom:1px solid var(--cream2); align-items:flex-start; }
+.info-row:last-child { border:none; }
+.info-icon { width:40px; height:40px; background:rgba(123,158,135,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+
+.related-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+@media(max-width:900px){
+  .event-layout { grid-template-columns:1fr; }
+  .event-sticky { position:static; }
+  .related-grid { grid-template-columns:1fr; }
+}
+
+/* Contact popup */
+.ev-contact-backdrop {
+  position:fixed;inset:0;background:rgba(61,53,48,0);z-index:900;
+  transition:background 0.3s;
+}
+.ev-contact-backdrop.open { background:rgba(61,53,48,0.4); }
+.ev-contact-modal {
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.9);
+  width:min(480px,92vw);background:var(--white);border-radius:20px;
+  box-shadow:0 24px 80px rgba(0,0,0,0.2);z-index:901;
+  opacity:0;transition:opacity 0.25s,transform 0.3s cubic-bezier(0.34,1.1,0.64,1);
+  direction:rtl;overflow:hidden;
+}
+.ev-contact-modal.open { opacity:1;transform:translate(-50%,-50%) scale(1); }
+.ev-contact-head {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px 16px;
+  background:linear-gradient(135deg,var(--sage),var(--sage-d));color:white;
+}
+.ev-contact-head h3 { font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300; }
+.ev-contact-close {
+  width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);
+  color:white;font-size:0.9rem;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background 0.2s;
+}
+.ev-contact-close:hover { background:rgba(255,255,255,0.35); }
+.ev-contact-body { padding:24px; display:flex; flex-direction:column; gap:14px; }
+.ev-contact-body input, .ev-contact-body textarea {
+  width:100%;padding:12px 16px;border:1px solid rgba(196,168,130,0.35);
+  border-radius:10px;font-size:0.92rem;color:var(--brown);
+  font-family:'DM Sans',sans-serif;background:var(--cream);
+  transition:border-color 0.2s;box-sizing:border-box;
+}
+.ev-contact-body input:focus, .ev-contact-body textarea:focus {
+  outline:none;border-color:var(--sage);
+}
+.ev-contact-body textarea { resize:vertical;min-height:90px; }
+.ev-contact-send {
+  padding:13px;border-radius:10px;
+  background:linear-gradient(135deg,var(--sage),var(--sage-d));
+  color:white;font-size:0.95rem;font-family:'DM Sans',sans-serif;
+  cursor:pointer;transition:opacity 0.2s;
+}
+.ev-contact-send:hover { opacity:0.88; }
+.ev-contact-success { text-align:center;padding:8px 0;font-size:0.88rem;color:var(--sage);display:none; }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:40px;width:auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span style="display:none">לי<span>לא</span></span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">ראשי</a></li>
+    <li><a href="yoga.html">יוגה</a></li>
+    <li><a href="culture.html">תוכן ותרבות</a></li>
+    <li><a href="private-events.html">אירועים פרטיים</a></li>
+  </ul>
+  <a href="index.html#events-section" class="nav-cta">← כל האירועים</a>
+  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="index.html">ראשי</a><a href="yoga.html">יוגה</a><a href="culture.html">תוכן ותרבות</a>
+  <a href="private-events.html">אירועים פרטיים</a>
+</div>
+
+<!-- HERO - populated by JS -->
+<div id="event-hero">
+  <img class="event-hero-img" id="ev-hero-img" src="" alt=""/>
+  <div class="event-hero-overlay"></div>
+  <div class="event-hero-content">
+    <span class="event-category-tag" id="ev-cat-tag"></span>
+    <h1 class="event-hero-title" id="ev-title">טוען...</h1>
+    <div class="event-hero-meta">
+      <span id="ev-date-meta"></span>
+      <span id="ev-time-meta"></span>
+      <span id="ev-location-meta"></span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section style="background:var(--cream)">
+  <div class="section-inner">
+    <div class="event-layout">
+      <!-- Left: Details -->
+      <div>
+        <!-- Back -->
+        <a href="index.html#events-section" style="display:inline-flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--sage);margin-bottom:36px;font-weight:500;border-bottom:1px solid var(--sage-l);padding-bottom:2px">← חזרה לאירועים</a>
+
+        <div class="detail-section">
+          <h3>על האירוע</h3>
+          <p class="section-body" id="ev-description" style="max-width:100%"></p>
+        </div>
+
+        <div class="detail-section">
+          <h3>מה כלול</h3>
+          <ul class="detail-list" id="ev-includes"></ul>
+        </div>
+
+        <div class="detail-section">
+          <h3>מה להביא</h3>
+          <ul class="detail-list" id="ev-bring"></ul>
+        </div>
+
+        <div class="detail-section">
+          <h3>פרטי האירוע</h3>
+          <div id="ev-info-rows"></div>
+        </div>
+
+        <!-- Share -->
+        <div style="margin-top:40px;padding-top:28px;border-top:1px solid var(--cream2)">
+          <span style="font-size:0.78rem;color:var(--brown-xl);margin-bottom:12px;display:block">שתפו את האירוע:</span>
+          <div style="display:flex;gap:10px">
+            <button onclick="shareEvent('whatsapp')" class="btn-outline" style="padding:9px 18px;font-size:0.8rem">WhatsApp</button>
+            <button onclick="shareEvent('facebook')" class="btn-outline" style="padding:9px 18px;font-size:0.8rem">Facebook</button>
+            <button onclick="copyLink()" class="btn-outline" style="padding:9px 18px;font-size:0.8rem" id="copy-btn">העתק קישור</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Ticket box (sticky) -->
+      <div class="event-sticky">
+        <div class="ticket-box">
+          <div style="margin-bottom:20px">
+            <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--tan);margin-bottom:6px">מחיר</div>
+            <div class="ticket-price" id="ev-price">₪--</div>
+          </div>
+          <div style="margin-bottom:20px">
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--brown-l);margin-bottom:4px">
+              <span>מקומות פנויים</span>
+              <span id="ev-spots">-- / --</span>
+            </div>
+            <div class="spots-bar"><div class="spots-fill" id="ev-spots-bar" style="width:60%"></div></div>
+          </div>
+          <button class="btn-primary" id="register-btn" style="width:100%;padding:16px;font-size:1rem;border-radius:12px;margin-bottom:12px">
+            הרשמה לאירוע
+          </button>
+          <button class="btn-outline" style="display:block;width:100%;text-align:center;padding:13px;cursor:pointer" id="open-contact-btn">שאלה? צרו קשר</button>
+
+          <!-- Event summary card -->
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--cream2);display:flex;flex-direction:column;gap:10px">
+            <div class="info-row" style="padding:8px 0;border:none">
+              <div class="info-icon">📅</div>
+              <div><div style="font-size:0.68rem;color:var(--tan);letter-spacing:0.12em;text-transform:uppercase">תאריך</div><div style="font-size:0.9rem;color:var(--brown)" id="ev-date-card"></div></div>
+            </div>
+            <div class="info-row" style="padding:8px 0;border:none">
+              <div class="info-icon">🕐</div>
+              <div><div style="font-size:0.68rem;color:var(--tan);letter-spacing:0.12em;text-transform:uppercase">שעה</div><div style="font-size:0.9rem;color:var(--brown)" id="ev-time-card"></div></div>
+            </div>
+            <div class="info-row" style="padding:8px 0;border:none">
+              <div class="info-icon">📍</div>
+              <div><div style="font-size:0.68rem;color:var(--tan);letter-spacing:0.12em;text-transform:uppercase">מיקום</div><div style="font-size:0.9rem;color:var(--brown)" id="ev-location-card"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini lotus decoration -->
+        <div style="text-align:center;margin-top:24px;opacity:0.6">
+          <div class="mini-lotus" style="margin:0 auto"></div>
+          <div style="font-family:'Dancing Script',cursive;font-size:1rem;color:var(--tan);margin-top:8px">לילא — משחק אלוהי</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT POPUP -->
+<div class="ev-contact-backdrop" id="ev-contact-backdrop"></div>
+<div class="ev-contact-modal" id="ev-contact-modal" role="dialog" aria-modal="true">
+  <div class="ev-contact-head">
+    <h3>שאלה לגבי האירוע</h3>
+    <button class="ev-contact-close" id="ev-contact-close" aria-label="סגור">✕</button>
+  </div>
+  <div class="ev-contact-body">
+    <input type="text" id="ev-contact-name" placeholder="שם מלא"/>
+    <input type="tel" id="ev-contact-phone" placeholder="טלפון"/>
+    <input type="email" id="ev-contact-email" placeholder="מייל (אופציונלי)"/>
+    <textarea id="ev-contact-msg" placeholder="מה תרצה/י לשאול?"></textarea>
+    <button class="ev-contact-send" id="ev-contact-send">שליחה</button>
+    <div class="ev-contact-success" id="ev-contact-success">תודה! נחזור אליך בהקדם ✦</div>
+  </div>
+</div>
+
+<!-- RELATED EVENTS -->
+<section style="background:var(--cream2)">
+  <div class="section-inner">
+    <span class="section-label reveal">אולי תאהבו גם</span>
+    <h2 class="section-title reveal d1">אירועים <em>דומים</em></h2>
+    <div class="related-grid" id="related-events"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div><a href="index.html" class="footer-logo-wrap"><img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:36px;width:auto;filter:brightness(0) sepia(1) saturate(0.4) brightness(0.55)" onerror="this.style.display='none'"/></a><p class="footer-desc">בית ליוגה, פיתוח ותוכן תרבותי חווייתי.</p><div class="footer-social"><a href="https://instagram.com/leela.friends" target="_blank">📸</a><a href="mailto:leela.salit@gmail.com">✉</a><a href="tel:+972523511064">☎</a></div></div>
+    <div class="footer-col"><h4>ניווט</h4><ul><li><a href="yoga.html">יוגה</a></li><li><a href="culture.html">תוכן ותרבות</a></li><li><a href="private-events.html">אירועים פרטיים</a></li></ul></div>
+    <div class="footer-col"><h4>צור קשר</h4><ul><li><a href="mailto:leela.salit@gmail.com">leela.salit@gmail.com</a></li><li><a href="tel:+972523511064">052-3511064</a></li></ul></div>
+    <div class="footer-col"></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 לילא</span><span style="color:var(--sage)">לִילָא — משחק אלוהי</span></div>
+</footer>
+
+<script src="js/events-data.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/tickets.js"></script>
+<script>
+const MONTH_NAMES_HE = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+const DAY_NAMES_HE = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const eventId = params.get('id');
+
+  if (!eventId) { loadDefaultEvent(); return; }
+  const ev = getEventById(decodeURIComponent(eventId));
+  if (!ev) { loadDefaultEvent(); return; }
+
+  // Get first upcoming date for this event
+  const today = new Date().toISOString().split('T')[0];
+  const upcomingDate = (ev.dates || []).find(d => d >= today) || (ev.dates || [])[0] || today;
+  const [y,m,d] = upcomingDate.split('-');
+  const dateObj = new Date(upcomingDate);
+  const dateFormatted = `${DAY_NAMES_HE[dateObj.getDay()]}, ${parseInt(d)} ${MONTH_NAMES_HE[parseInt(m)-1]} ${y}`;
+
+  // Update page title
+  document.title = `${ev.title} — לילא`;
+
+  // Hero
+  document.getElementById('ev-hero-img').src = ev.image || '';
+  document.getElementById('ev-title').textContent = ev.title;
+  const catColor = CATEGORY_COLORS[ev.category] || 'var(--sage)';
+  const catTag = document.getElementById('ev-cat-tag');
+  catTag.textContent = CATEGORY_LABELS[ev.category] || ev.category;
+  catTag.style.cssText = `background:${catColor}30;color:white;border:1px solid rgba(255,255,255,0.3)`;
+  document.getElementById('ev-date-meta').textContent = `📅 ${dateFormatted}`;
+  document.getElementById('ev-time-meta').textContent = `🕐 ${ev.time}–${ev.endTime}`;
+  document.getElementById('ev-location-meta').textContent = `📍 ${ev.location}`;
+
+  // Ticket box
+  document.getElementById('ev-price').innerHTML = `₪${ev.price} <span>לאדם</span>`;
+  const taken = ev.registered || Math.floor(Math.random() * (ev.capacity * 0.7));
+  const free = ev.capacity - taken;
+  document.getElementById('ev-spots').textContent = `${free} / ${ev.capacity}`;
+  document.getElementById('ev-spots-bar').style.width = `${(taken/ev.capacity)*100}%`;
+  document.getElementById('ev-date-card').textContent = dateFormatted;
+  document.getElementById('ev-time-card').textContent = `${ev.time} – ${ev.endTime}`;
+  document.getElementById('ev-location-card').textContent = ev.location;
+
+  // Register button
+  document.getElementById('register-btn').onclick = () => openTicketModal(ev.id, ev.title, ev.price);
+
+  // Details
+  document.getElementById('ev-description').textContent = ev.description || '';
+  document.getElementById('ev-includes').innerHTML = (ev.includes || []).map(i => `<li>${i}</li>`).join('');
+  document.getElementById('ev-bring').innerHTML = (ev.whatToBring || []).map(i => `<li>${i}</li>`).join('');
+
+  const infoRows = [
+    { icon:'👤', label:'מדריך/ת', val:ev.instructor || 'לילא' },
+    { icon:'👥', label:'קיבולת', val:`עד ${ev.capacity} אנשים` },
+    { icon:'⏱', label:'משך', val:`${ev.time} – ${ev.endTime}` },
+  ];
+  document.getElementById('ev-info-rows').innerHTML = infoRows.map(r => `
+    <div class="info-row">
+      <div class="info-icon">${r.icon}</div>
+      <div><div style="font-size:0.68rem;color:var(--tan);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:3px">${r.label}</div>
+      <div style="font-size:0.9rem;color:var(--brown)">${r.val}</div></div>
+    </div>
+  `).join('');
+
+  // Related events (same category, different id)
+  const related = getUpcomingEvents(30)
+    .filter(e => e.category === ev.category && e.baseId !== ev.id)
+    .slice(0, 3);
+  const monthNamesShort = ['ינו','פבר','מרץ','אפר','מאי','יוני','יולי','אוג','ספט','אוק','נוב','דצמ'];
+  document.getElementById('related-events').innerHTML = related.map(e => {
+    const [ry,rm,rd] = e.date.split('-');
+    const color = CATEGORY_COLORS[e.category] || 'var(--sage)';
+    return `
+      <div class="card reveal" style="cursor:pointer" onclick="window.location.href='event.html?id=${encodeURIComponent(e.baseId)}'">
+        <div style="position:relative;height:160px;overflow:hidden">
+          <img class="card-img" src="${e.image}" alt="${e.title}" style="height:100%"/>
+          <span style="position:absolute;top:12px;right:12px;background:${color};color:white;padding:4px 10px;border-radius:12px;font-size:0.7rem">${CATEGORY_LABELS[e.category]||''}</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${e.title}</div>
+          <div class="card-meta" style="margin-top:6px">📅 ${parseInt(rd)} ${monthNamesShort[parseInt(rm)-1]} | 💰 ₪${e.price}</div>
+          <button class="btn-ghost" style="margin-top:14px" onclick="event.stopPropagation();openTicketModal('${e.baseId}','${e.title}',${e.price})">קנה כרטיס ←</button>
+        </div>
+      </div>
+    `;
+  }).join('') || '<p style="grid-column:1/-1;text-align:center;color:var(--brown-xl);padding:40px">אין אירועים דומים כרגע</p>';
+
+  initReveal();
+});
+
+function loadDefaultEvent() {
+  const upcoming = getUpcomingEvents(1);
+  if (upcoming.length) {
+    window.location.href = `event.html?id=${encodeURIComponent(upcoming[0].baseId)}`;
+  }
+}
+
+function shareEvent(platform) {
+  const url = encodeURIComponent(window.location.href);
+  const title = encodeURIComponent(document.title);
+  if (platform === 'whatsapp') window.open(`https://wa.me/?text=${title}%20${url}`, '_blank');
+  if (platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  const btn = document.getElementById('copy-btn');
+  btn.textContent = '✓ הועתק!';
+  setTimeout(() => btn.textContent = 'העתק קישור', 2000);
+}
+
+// Contact popup
+(function() {
+  const backdrop = document.getElementById('ev-contact-backdrop');
+  const modal = document.getElementById('ev-contact-modal');
+  const openBtn = document.getElementById('open-contact-btn');
+  const closeBtn = document.getElementById('ev-contact-close');
+  const sendBtn = document.getElementById('ev-contact-send');
+  const success = document.getElementById('ev-contact-success');
+
+  function openModal() {
+    backdrop.classList.add('open');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    backdrop.classList.remove('open');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  openBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+
+  sendBtn?.addEventListener('click', () => {
+    const name = document.getElementById('ev-contact-name').value.trim();
+    const phone = document.getElementById('ev-contact-phone').value.trim();
+    const msg = document.getElementById('ev-contact-msg').value.trim();
+    if (!name || !phone) {
+      document.getElementById('ev-contact-name').style.borderColor = name ? '' : 'var(--tan)';
+      document.getElementById('ev-contact-phone').style.borderColor = phone ? '' : 'var(--tan)';
+      return;
+    }
+    const evTitle = document.getElementById('ev-title')?.textContent || '';
+    const mailBody = encodeURIComponent(`שם: ${name}\nטלפון: ${phone}\nאירוע: ${evTitle}\n\n${msg}`);
+    window.open(`mailto:leela.salit@gmail.com?subject=${encodeURIComponent('שאלה לגבי אירוע — ' + evTitle)}&body=${mailBody}`);
+    success.style.display = 'block';
+    sendBtn.style.display = 'none';
+    setTimeout(closeModal, 2500);
+  });
+})();
+</script>
+</body>
+</html>

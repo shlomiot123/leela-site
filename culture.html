@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>לילא תוכן ותרבות</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="css/style.css"/>
+<style>
+.program-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.prog-card { background:var(--white); border-radius:var(--radius); overflow:hidden; border:1px solid rgba(196,168,130,0.15); transition:all var(--transition); }
+.prog-card:hover { transform:translateY(-7px); box-shadow:var(--shadow-l); border-color:transparent; }
+.prog-card-img { width:100%; height:200px; object-fit:cover; transition:transform 0.6s ease; }
+.prog-card:hover .prog-card-img { transform:scale(1.05); }
+.prog-card-body { padding:24px; }
+.prog-tag { display:inline-block; padding:4px 12px; border-radius:20px; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
+.prog-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--brown); margin-bottom:8px; }
+.prog-desc { font-size:0.85rem; line-height:1.8; color:var(--brown-l); margin-bottom:16px; }
+.prog-meta { font-size:0.78rem; color:var(--brown-xl); display:flex; flex-direction:column; gap:4px; }
+
+.events-upcoming { display:flex; flex-direction:column; gap:12px; }
+.upcoming-card { display:grid; grid-template-columns:80px 1fr auto; gap:20px; align-items:center; padding:20px 24px; background:var(--white); border-radius:var(--radius); border:1px solid rgba(196,168,130,0.15); cursor:pointer; transition:all var(--transition); }
+.upcoming-card:hover { border-color:var(--sage); transform:translateX(-5px); box-shadow:var(--shadow); }
+
+@media(max-width:900px){
+  .program-cards { grid-template-columns:1fr; }
+  .upcoming-card { grid-template-columns:70px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:40px;width:auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span style="display:none">לי<span>לא</span></span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">ראשי</a></li>
+    <li><a href="index.html#events-section">אירועים</a></li>
+    <li><a href="yoga.html">יוגה</a></li>
+    <li><a href="culture.html" class="active">תוכן ותרבות</a></li>
+    <li><a href="private-events.html">אירועים פרטיים</a></li>
+  </ul>
+  <a href="index.html#contact-section" class="nav-cta">צור קשר</a>
+  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="index.html">ראשי</a>
+  <a href="index.html#events-section">אירועים</a>
+  <a href="yoga.html">יוגה</a>
+  <a href="culture.html">תוכן ותרבות</a>
+  <a href="private-events.html">אירועים פרטיים</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero" style="min-height:60vh">
+  <img class="page-hero-img" src="https://static.wixstatic.com/media/38a166_213336aa750c4a5dba6aa24246722fe6~mv2.jpg" alt="תוכן ותרבות" style="opacity:0.88"/>
+  <div class="page-hero-overlay" style="background:linear-gradient(to top,var(--cream) 0%,rgba(247,243,238,0.15) 40%,transparent 100%)"></div>
+  <div class="page-hero-content">
+    <span class="section-label reveal">לילא תוכן ותרבות</span>
+    <h1 class="reveal d1">תרבות<br/><em>חיה ופועמת</em></h1>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--brown-l);max-width:560px;font-weight:300" class="reveal d2">תערוכות, סדנאות, הרצאות וחוויות שמחברות קהילה ומרחיבות גבולות.</p>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section style="background:var(--cream)">
+  <div class="section-inner">
+    <span class="section-label reveal">התכניות שלנו</span>
+    <h2 class="section-title reveal d1">עולם ה<em>תוכן</em> בלילא</h2>
+    <p class="section-body reveal d2" style="margin-bottom:48px">לילא היא בית לתכנים שנוגעים בנשמה — מאמנות ויזואלית ועד ריפוי קולי, מסדנאות פיתוח ועד ערבי תרבות.</p>
+    <div class="program-cards">
+      <div class="prog-card reveal">
+        <img class="prog-card-img" src="https://static.wixstatic.com/media/7ea0d3_8651490c42e0417dbb9ea8d050f66aef~mv2.jpg" alt="ריפוי בצלילים"/>
+        <div class="prog-card-body">
+          <span class="prog-tag" style="background:rgba(139,123,139,0.12);color:#8B7B8B">ריפוי</span>
+          <div class="prog-title">ריפוי בצלילים</div>
+          <p class="prog-desc">קערות טיבטיות, גונג וכלים שאמניים יוצרים אמבט ויברציוני שממיס מתחים ופותח מחדש. מפגשי ירח מלא חודשיים.</p>
+          <div class="prog-meta">
+            <span>📅 כל ירח מלא</span>
+            <span>🕗 20:00–22:00</span>
+            <span>💰 ₪120 למפגש</span>
+          </div>
+          <button class="btn-primary" style="margin-top:16px;padding:10px 24px;font-size:0.85rem" onclick="openTicketModal('sound-healing-monthly','ריפוי בצלילים — ירח מלא',120)">להרשמה</button>
+        </div>
+      </div>
+
+      <div class="prog-card reveal d1">
+        <img class="prog-card-img" src="https://static.wixstatic.com/media/38a166_8aad6126b20a43518b2eac3ebce94a28~mv2.jpg" alt="ציור בוטני"/>
+        <div class="prog-card-body">
+          <span class="prog-tag" style="background:rgba(158,187,158,0.15);color:#7B9E87">אמנות</span>
+          <div class="prog-title">ציור בוטני מדיטטיבי</div>
+          <p class="prog-desc">ערב של ציור בוטני מדיטטיבי — נצייר צמחים ופרחים בטכניקות מיוחדות. כלים, הדרכה ורגיעה כלולים.</p>
+          <div class="prog-meta">
+            <span>📅 כל שבועיים, רביעי ערב</span>
+            <span>🕗 18:00–21:00</span>
+            <span>💰 ₪150 לסדנה</span>
+          </div>
+          <button class="btn-primary" style="margin-top:16px;padding:10px 24px;font-size:0.85rem" onclick="openTicketModal('botanical-painting','ציור בוטני',150)">להרשמה</button>
+        </div>
+      </div>
+
+      <div class="prog-card reveal d2">
+        <img class="prog-card-img" src="https://static.wixstatic.com/media/7ea0d3_5b7b39442ebf406695d488c71f47dc1d~mv2.jpeg" alt="קליעת צמות"/>
+        <div class="prog-card-body">
+          <span class="prog-tag" style="background:rgba(196,168,130,0.15);color:var(--tan)">מלאכת יד</span>
+          <div class="prog-title">האקדמיה לקליעת צמות</div>
+          <p class="prog-desc">אמנות עתיקה ומרגיעה — נלמד טכניקות קליעה שונות ונגלה את המדיטטיביות שבתהליך. לכל הגילאים.</p>
+          <div class="prog-meta">
+            <span>📅 פעם בחודש</span>
+            <span>🕗 11:00–14:00</span>
+            <span>💰 ₪120 לסדנה</span>
+          </div>
+          <button class="btn-primary" style="margin-top:16px;padding:10px 24px;font-size:0.85rem" onclick="openTicketModal('braiding-academy','קליעת צמות',120)">להרשמה</button>
+        </div>
+      </div>
+
+      <div class="prog-card reveal d1">
+        <img class="prog-card-img" src="https://static.wixstatic.com/media/38a166_2f9a648a4008427985a166142638d8fd~mv2.jpg" alt="סדנת פיתוח"/>
+        <div class="prog-card-body">
+          <span class="prog-tag" style="background:rgba(184,160,200,0.15);color:#9B7BB8">פיתוח אישי</span>
+          <div class="prog-title">שאלה לאוויר</div>
+          <p class="prog-desc">סוף שבוע מרחב התפתחותי — פסיכולוגיה עומק, תנועה, כתיבה ושיתוף. מסע פנימי עם מנחה רחל מדמוני.</p>
+          <div class="prog-meta">
+            <span>📅 ספטמבר 9-10</span>
+            <span>🕗 10:00–18:00</span>
+            <span>💰 ₪680 לסוף שבוע</span>
+          </div>
+          <button class="btn-primary" style="margin-top:16px;padding:10px 24px;font-size:0.85rem" onclick="openTicketModal('question-to-air','שאלה לאוויר',680)">להרשמה</button>
+        </div>
+      </div>
+
+      <div class="prog-card reveal d2">
+        <img class="prog-card-img" src="https://static.wixstatic.com/media/38a166_30cf096aa5cf4180a2c3c27f84aacd9f~mv2.png" alt="תערוכת פופ ארט"/>
+        <div class="prog-card-body">
+          <span class="prog-tag" style="background:rgba(232,180,184,0.15);color:#C06070">אמנות</span>
+          <div class="prog-title">תערוכות ואמנות</div>
+          <p class="prog-desc">לילא מארחת תערוכות סיבוביות של אמנים מקומיים. אמנות שמתחברת לתכנים, לגוף ולנשמה.</p>
+          <div class="prog-meta">
+            <span>📅 לאורך השנה</span>
+            <span>🕗 עם פתיחת האירוע</span>
+            <span>💰 ₪60 לכניסה</span>
+          </div>
+          <button class="btn-primary" style="margin-top:16px;padding:10px 24px;font-size:0.85rem" onclick="openTicketModal('pop-art','תערוכת פופ ארט',60)">לרכישת כרטיס</button>
+        </div>
+      </div>
+
+      <div class="prog-card reveal d3">
+        <img class="prog-card-img" src="https://static.wixstatic.com/media/38a166_9be83d8268954f2bbcd54f5edaa1759c~mv2.jpg" alt="ניהול הוליסטי"/>
+        <div class="prog-card-body">
+          <span class="prog-tag" style="background:rgba(158,158,123,0.15);color:#7B7B5E">עסקי</span>
+          <div class="prog-title">ניהול הוליסטי</div>
+          <p class="prog-desc">יום עיון לאנשי מקצוע ומנהלים — שילוב חוכמת הגוף, אינטואיציה ומנהיגות מודעת לחיים ועבודה.</p>
+          <div class="prog-meta">
+            <span>📅 כל 2 חודשים</span>
+            <span>🕗 09:00–17:00</span>
+            <span>💰 ₪450 ליום</span>
+          </div>
+          <button class="btn-primary" style="margin-top:16px;padding:10px 24px;font-size:0.85rem" onclick="openTicketModal('holistic-management','ניהול הוליסטי',450)">להרשמה</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING EVENTS -->
+<section style="background:var(--cream2)">
+  <div class="section-inner">
+    <div class="section-header-row section-header">
+      <div>
+        <span class="section-label reveal">בקרוב</span>
+        <h2 class="section-title reveal d1">אירועי <em>תרבות</em> קרובים</h2>
+      </div>
+      <a href="index.html#events-section" class="btn-outline reveal d2">לכל האירועים</a>
+    </div>
+    <div class="events-upcoming" id="culture-events">
+      <!-- JS populated -->
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section style="background:var(--cream)">
+  <div class="section-inner">
+    <span class="section-label reveal">אווירה</span>
+    <h2 class="section-title reveal d1">ב<em>לילא</em> מרגישים</h2>
+    <div class="gallery-masonry reveal">
+      <img src="https://static.wixstatic.com/media/7ea0d3_fa94732217804aebb374ef1eac3ce11a~mv2.jpeg" alt="" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/7ea0d3_fc62b8bb566e4cfe86070bbccc6af6b4~mv2.jpg" alt="" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/7ea0d3_c9223845059b48eeb9db6ecb1bc102e8~mv2.jpg" alt="" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/38a166_30cf096aa5cf4180a2c3c27f84aacd9f~mv2.png" alt="" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/7ea0d3_4b6422c5966448598501a9d9d69a41e0~mv2.jpeg" alt="" loading="lazy"/>
+      <img src="https://static.wixstatic.com/media/7ea0d3_e372021615b04f58b15e1a0d51d81599~mv2.jpeg" alt="" loading="lazy"/>
+    </div>
+  </div>
+</section>
+<div id="lightbox" class="lightbox"><span class="lightbox-close">×</span><img src="" alt=""/></div>
+
+<div class="quote-section">
+  <p class="quote-text reveal">"תרבות היא הדרך שבה קהילה מספרת לעצמה את סיפורה — ולילא היא הבמה שלנו."</p>
+  <p class="quote-author reveal d2">— רוח לילא</p>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div><a href="index.html" class="footer-logo-wrap"><img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:36px;width:auto;filter:brightness(0) sepia(1) saturate(0.4) brightness(0.55)" onerror="this.style.display='none'"/></a><p class="footer-desc">בית ליוגה, פיתוח ותוכן תרבותי חווייתי.</p><div class="footer-social"><a href="https://instagram.com/leela.friends" target="_blank">📸</a><a href="mailto:leela.salit@gmail.com">✉</a><a href="tel:+972523511064">☎</a></div></div>
+    <div class="footer-col"><h4>תוכן ותרבות</h4><ul><li><a href="culture.html">ריפוי בצלילים</a></li><li><a href="culture.html">ציור בוטני</a></li><li><a href="culture.html">תערוכות</a></li><li><a href="culture.html">ניהול הוליסטי</a></li></ul></div>
+    <div class="footer-col"><h4>לילא</h4><ul><li><a href="index.html">ראשי</a></li><li><a href="yoga.html">יוגה</a></li><li><a href="private-events.html">אירועים פרטיים</a></li></ul></div>
+    <div class="footer-col"><h4>צור קשר</h4><ul><li><a href="mailto:leela.salit@gmail.com">leela.salit@gmail.com</a></li><li><a href="tel:+972523511064">052-3511064</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 לילא</span><span style="color:var(--sage)">לִילָא — משחק אלוהי</span></div>
+</footer>
+
+<script src="js/events-data.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/tickets.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('culture-events');
+  const monthNames = ['ינו','פבר','מרץ','אפר','מאי','יוני','יולי','אוג','ספט','אוק','נוב','דצמ'];
+  const upcoming = getUpcomingEvents(30).filter(e => e.category !== 'yoga').slice(0, 6);
+  container.innerHTML = upcoming.map((ev, i) => {
+    const [y,m,d] = ev.date.split('-');
+    const catColor = CATEGORY_COLORS[ev.category] || 'var(--tan)';
+    return `
+      <div class="upcoming-card reveal" style="transition-delay:${i*0.06}s" onclick="window.location.href='event.html?id=${encodeURIComponent(ev.baseId)}'">
+        <div class="event-date-badge" style="background:linear-gradient(135deg,${catColor},${catColor}BB)">
+          <div class="day">${parseInt(d)}</div>
+          <div class="month">${monthNames[parseInt(m)-1]}</div>
+        </div>
+        <div>
+          <div class="event-title-main">${ev.title}</div>
+          <div class="event-meta-row" style="font-size:0.8rem;color:var(--brown-xl);margin-top:4px">
+            <span>🕐 ${ev.time}</span><span>📍 ${ev.location}</span>
+            ${ev.instructor ? `<span>👤 ${ev.instructor}</span>` : ''}
+          </div>
+        </div>
+        <button class="btn-primary" style="padding:10px 22px;font-size:0.82rem;white-space:nowrap"
+          onclick="event.stopPropagation();openTicketModal('${ev.baseId}','${ev.title}',${ev.price})">
+          ₪${ev.price} — הרשמה
+        </button>
+      </div>
+    `;
+  }).join('') || '<p style="color:var(--brown-xl);text-align:center;padding:40px">אין אירועים קרובים כרגע</p>';
+  initReveal();
+});
+</script>
+</body>
+</html>

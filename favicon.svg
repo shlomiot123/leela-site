@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="32" fill="#7B9E87"/>
+  <!-- Lotus silhouette -->
+  <g fill="none" stroke="#F7F3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Center petal -->
+    <path d="M32 44 Q26 34 32 22 Q38 34 32 44Z"/>
+    <!-- Left petals -->
+    <path d="M32 44 Q18 38 20 24 Q28 32 32 44Z" opacity="0.9"/>
+    <path d="M32 44 Q12 36 16 20 Q24 30 32 44Z" opacity="0.6"/>
+    <!-- Right petals -->
+    <path d="M32 44 Q46 38 44 24 Q36 32 32 44Z" opacity="0.9"/>
+    <path d="M32 44 Q52 36 48 20 Q40 30 32 44Z" opacity="0.6"/>
+    <!-- Stem -->
+    <line x1="32" y1="44" x2="32" y2="50"/>
+  </g>
+</svg>
