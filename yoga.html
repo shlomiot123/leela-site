@@ -79,8 +79,14 @@
   .style-meta { gap:6px; }
   .style-badge { font-size:0.64rem; padding:3px 7px; }
 
-  /* Pricing */
-  .pricing-grid { grid-template-columns:1fr 1fr; }
+  /* Pricing: compact 2-col */
+  .pricing-grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .price-card { padding:16px 12px !important; }
+  .price-num { font-size:1.9rem !important; }
+  .price-unit { margin:2px 0 8px !important; font-size:0.72rem !important; }
+  .price-features { margin-bottom:10px !important; }
+  .price-features li { padding:3px 0 !important; font-size:0.76rem !important; }
+  .price-card .btn-outline { padding:8px 12px; font-size:0.76rem; }
 
   /* Instructors */
   .instructor-card { padding:16px; gap:12px; }
@@ -120,7 +126,7 @@
 
 <!-- PAGE HERO -->
 <div class="page-hero">
-  <img class="page-hero-img" src="https://static.wixstatic.com/media/7ea0d3_cc87072634d64c8e8b9426168dee916d~mv2.jpeg" alt="לילא יוגה" style="opacity:0.68"/>
+  <img class="page-hero-img" src="https://images.unsplash.com/photo-1677741447985-da1d90c00742?w=1920&q=90" alt="לילא יוגה" style="opacity:0.82;object-position:center 30%"/>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <span class="section-label reveal">לילא יוגה</span>
@@ -450,9 +456,9 @@
     </div>
     <div class="sched-scroll-hint">
       <div class="sched-hint-arrows">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 4L6 8l4 4"/></svg>
-        <span>גלול לצדדים</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 4l4 4-4 4"/></svg>
+        <span>גלול לצדדים</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 4L6 8l4 4"/></svg>
       </div>
     </div>
     </div><!-- /sched-container -->

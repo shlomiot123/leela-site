@@ -77,6 +77,9 @@
 .img-mosaic img:first-child{grid-row:1/2;margin-top:0}
 .img-mosaic img:nth-child(2){margin-top:30px}
 
+/* ─── Pricing icon chips ─── */
+.pc-icon{display:none;font-size:0.85em;margin-left:5px}
+
 /* ─── Form ─── */
 .inquiry-form-wrap{background:var(--white);border-radius:var(--radius);padding:44px;box-shadow:var(--shadow)}
 
@@ -124,11 +127,23 @@
   .pe-stats{gap:10px;margin:20px 0 28px}
   .pe-stat span{font-size:2rem}
   .pe-stat-sep{display:none}
+  /* Event type cards: show small text */
   .etype-grid{grid-template-columns:1fr 1fr;margin-top:28px}
   .etype-card{aspect-ratio:4/3}
+  .etype-card-num{opacity:0.9 !important;font-size:0.6rem}
+  .etype-card-body h3{font-size:1rem}
+  .etype-card-body p{opacity:0.88 !important;max-height:none !important;font-size:0.74rem}
+  .etype-cta{display:none}
+
+  /* Rental pricing: icons + 2-col list */
   .pricing-grid{grid-template-columns:1fr}
-  .pc-rate{font-size:2.4rem}
-  .price-card{padding:28px 22px}
+  .pc-rate{font-size:2.2rem}
+  .price-card{padding:22px 18px}
+  .pc-list{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;margin-bottom:14px}
+  .pc-list li{font-size:0.78rem;padding:3px 0;border:none}
+  .pc-list li::before{display:none}
+  .pc-icon{display:inline}
+
   .inquiry-form-wrap{padding:22px 18px}
   .img-mosaic{grid-template-columns:1fr 1fr}
   .img-mosaic img{height:130px}
@@ -162,7 +177,7 @@
 
 <!-- ══════════════════════ HERO ══════════════════════ -->
 <div class="page-hero" style="min-height:65vh;align-items:flex-end">
-  <img class="page-hero-img" src="https://static.wixstatic.com/media/7ea0d3_fa94732217804aebb374ef1eac3ce11a~mv2.jpeg" alt="אירוע פרטי בלילא" style="opacity:0.82"/>
+  <img class="page-hero-img" src="https://images.unsplash.com/photo-1759164955435-98462e76bfca?w=1920&q=90" alt="אירוע פרטי בלילא" style="opacity:0.90;object-position:center 40%"/>
   <div class="page-hero-overlay" style="background:linear-gradient(to top,var(--cream) 0%,rgba(247,243,238,0.12) 45%,transparent 100%)"></div>
   <div class="page-hero-content">
     <span class="section-label reveal">אירוע פרטי בלילא</span>
@@ -207,7 +222,7 @@
           <span class="etype-card-num">01 — אירועי משפחה</span>
           <h3>יום הולדת ואירוע משפחתי</h3>
           <p>חגיגה בלתי נשכחת עם יוגה, ציור בוטני וריפוי בצלילים. ניתן להביא קייטרינג וקישוטים.</p>
-          <span class="etype-cta">פנו אלינו →</span>
+          <span class="etype-cta">פנו אלינו ←</span>
         </div>
       </a>
 
@@ -218,7 +233,7 @@
           <span class="etype-card-num">02 — אירוע מרגש</span>
           <h3>בר ובת מצווה</h3>
           <p>חגיגה ייחודית המשלבת ריטואל, קהילה ומשמעות. טקס מודרני ומעגל שיח לכל המשפחה.</p>
-          <span class="etype-cta">פנו אלינו →</span>
+          <span class="etype-cta">פנו אלינו ←</span>
         </div>
       </a>
 
@@ -229,7 +244,7 @@
           <span class="etype-card-num">03 — ארגוני ועסקי</span>
           <h3>יום גיבוש ארגוני</h3>
           <p>יוגה קבוצתית, מדיטציה, סדנת יצירה ושאלה לאוויר — חוויה שמשאירה רושם לאורך זמן.</p>
-          <span class="etype-cta">פנו אלינו →</span>
+          <span class="etype-cta">פנו אלינו ←</span>
         </div>
       </a>
 
@@ -240,7 +255,7 @@
           <span class="etype-card-num">04 — ריטריט ורוחניות</span>
           <h3>ריטריט יוגה קבוצתי</h3>
           <p>יום שלם או סוף שבוע של יוגה, מדיטציה וריפוי בצלילים. גינה, מרפסת ושבילי טבע.</p>
-          <span class="etype-cta">פנו אלינו →</span>
+          <span class="etype-cta">פנו אלינו ←</span>
         </div>
       </a>
 
@@ -251,7 +266,7 @@
           <span class="etype-card-num">05 — סדנת יצירה</span>
           <h3>סדנה קבוצתית</h3>
           <p>ציור בוטני, קליעה, עיצוב או כל אמנות — מותאם לאופי הקבוצה ולאווירה הרצויה.</p>
-          <span class="etype-cta">פנו אלינו →</span>
+          <span class="etype-cta">פנו אלינו ←</span>
         </div>
       </a>
 
@@ -262,7 +277,7 @@
           <span class="etype-card-num">06 — חגיגה ייחודית</span>
           <h3>אירועים מיוחדים</h3>
           <p>מסיבת רווקות, bridal shower, ציון יובל — לילא היא בד ריק יפהפה שמחכה לצבעים שלכם.</p>
-          <span class="etype-cta">פנו אלינו →</span>
+          <span class="etype-cta">פנו אלינו ←</span>
         </div>
       </a>
 
@@ -461,13 +476,13 @@
         <div class="pc-rate">200 <small>₪/שעה</small></div>
         <div class="pc-period">+ מע"מ · מינימום 3 שעות = ₪600 + מע"מ</div>
         <ul class="pc-list">
-          <li>כל המתקנים כלולים</li>
-          <li>פינת קפה ותה</li>
-          <li>ציוד יוגה בסיסי</li>
-          <li>חניה חינם + נגישות</li>
-          <li>מרפסת וגינה</li>
+          <li><span class="pc-icon">✓</span>כל המתקנים כלולים</li>
+          <li><span class="pc-icon">☕</span>פינת קפה ותה</li>
+          <li><span class="pc-icon">🧘</span>ציוד יוגה בסיסי</li>
+          <li><span class="pc-icon">🚗</span>חניה חינם + נגישות</li>
+          <li><span class="pc-icon">🌿</span>מרפסת וגינה</li>
         </ul>
-        <a href="#inquiry-form" class="btn-outline" style="display:block;text-align:center">פנו לאירוע →</a>
+        <a href="#inquiry-form" class="btn-outline" style="display:block;text-align:center">פנו לאירוע ←</a>
         <div class="pc-tag">זמינות בבוקר + ערב</div>
       </div>
 
@@ -477,13 +492,13 @@
         <div class="pc-rate">250 <small>₪/שעה</small></div>
         <div class="pc-period">+ מע"מ · מינימום 3 שעות = ₪750 + מע"מ</div>
         <ul class="pc-list">
-          <li>כל המתקנים כלולים</li>
-          <li>גישה מלאה למרפסת ולגינה</li>
-          <li>תאורת ערב מיוחדת</li>
-          <li>ציוד יוגה מלא</li>
-          <li>עדיפות בבחירת תאריך</li>
+          <li><span class="pc-icon">✓</span>כל המתקנים כלולים</li>
+          <li><span class="pc-icon">🌿</span>גישה מלאה למרפסת ולגינה</li>
+          <li><span class="pc-icon">✨</span>תאורת ערב מיוחדת</li>
+          <li><span class="pc-icon">🧘</span>ציוד יוגה מלא</li>
+          <li><span class="pc-icon">⭐</span>עדיפות בבחירת תאריך</li>
         </ul>
-        <a href="#inquiry-form" class="btn-outline" style="display:block;text-align:center;color:rgba(247,243,238,0.85);border-color:rgba(247,243,238,0.3)">פנו לאירוע →</a>
+        <a href="#inquiry-form" class="btn-outline" style="display:block;text-align:center;color:rgba(247,243,238,0.85);border-color:rgba(247,243,238,0.3)">פנו לאירוע ←</a>
         <div class="pc-tag" style="color:rgba(247,243,238,0.6);border-color:rgba(247,243,238,0.2)">אווירת שישי / ערב</div>
       </div>
     </div>
