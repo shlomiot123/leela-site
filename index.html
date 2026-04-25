@@ -42,36 +42,44 @@
   text-align: center;
 }
 
-/* ── Mandala (desktop only) ── */
-.hero-mandala-wrap {
-  position: relative; width: 300px; height: 300px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; margin-bottom: 22px;
-}
-.hmr { position: absolute; border-radius: 50%; }
-.hmr1 { inset:  0;    border: 1.5px solid rgba(196,168,130,0.72); animation: hero-spin     28s linear infinite; }
-.hmr2 { inset: 18px;  border: 1px   dashed rgba(196,168,130,0.42); animation: hero-spin-rev 18s linear infinite; }
-.hmr3 { inset: 36px;  border: 1px   solid  rgba(196,168,130,0.28); animation: hero-spin     44s linear infinite; }
-.hmr4 { inset: 54px;  border: 1px   solid  rgba(168,197,176,0.32); animation: hero-spin-rev 60s linear infinite; }
-.hmr-glow {
-  position: absolute; border-radius: 50%;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(196,168,130,0.28) 0%, transparent 70%);
-  animation: hero-breathe 5s ease-in-out infinite;
-}
-.hmr-ticks { position: absolute; inset: 0; animation: hero-spin 28s linear infinite; }
-.hmr-tick  {
-  position: absolute; top: 50%; left: 50%;
-  width: 1.5px; height: 9px;
-  background: rgba(196,168,130,0.75);
-  transform-origin: 50% 150px;
-  margin-top: -150px; margin-left: -0.75px;
+/* ── Logo + Lotus (desktop only) ── */
+.hero-logo-lotus {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 14px; margin-bottom: 20px; flex-shrink: 0;
 }
 .hmr-logo {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  height: 92px; width: auto;
+  height: 96px; width: auto;
   filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(2deg) brightness(1.15);
+}
+.hero-lotus {
+  width: 220px; height: 220px; overflow: visible;
+}
+/* petal layer animations */
+.lotus-outer {
+  transform-box: fill-box; transform-origin: 50% 50%;
+  animation: lotus-petal-open 2s cubic-bezier(0.34,1.4,0.64,1) forwards,
+             lotus-breathe 6s ease-in-out infinite 2.2s;
+  opacity: 0;
+}
+.lotus-inner {
+  transform-box: fill-box; transform-origin: 50% 50%;
+  animation: lotus-petal-open 1.8s cubic-bezier(0.34,1.4,0.64,1) 0.28s forwards,
+             lotus-breathe 6s ease-in-out infinite 2.4s;
+  opacity: 0;
+}
+.lotus-center-g {
+  transform-box: fill-box; transform-origin: 50% 50%;
+  animation: lotus-petal-open 1.4s cubic-bezier(0.34,1.6,0.64,1) 0.52s forwards;
+  opacity: 0;
+}
+@keyframes lotus-petal-open {
+  0%   { transform: scale(0); opacity: 0; }
+  65%  { transform: scale(1.07); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes lotus-breathe {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.03); }
 }
 .hero-tagline {
   font-size: 0.72rem; letter-spacing: 0.32em;
@@ -215,7 +223,7 @@
   .hero-content { padding:0 20px 52px; display:block; width:100%; text-align:right; }
   .hero-text { padding:80px 0 0; max-width:100%; }
   .hero-tagline { display:none; }
-  .hero-mandala-wrap { display:none; }
+  .hero-logo-lotus { display:none; }
   .hero-h1 { font-size:clamp(2.4rem,10vw,3.2rem); text-shadow:0 1px 12px rgba(247,243,238,0.25); }
   .hero-sub { font-size:1rem; max-width:100%; margin-bottom:32px; }
   .hero-cta { flex-direction:column; gap:12px; justify-content:flex-start; }
@@ -326,28 +334,38 @@
     <span style="display:none;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:white;letter-spacing:0.15em">לי<span style="color:rgba(168,197,176,0.9)">לא</span></span>
   </div>
   <div class="hero-content">
-    <!-- desktop mandala (hidden on mobile) -->
-    <div class="hero-mandala-wrap reveal">
-      <div class="hmr hmr1"></div>
-      <div class="hmr hmr2"></div>
-      <div class="hmr hmr3"></div>
-      <div class="hmr hmr4"></div>
-      <div class="hmr-glow"></div>
-      <div class="hmr-ticks">
-        <div class="hmr-tick" style="transform:rotate(0deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(30deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(60deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(90deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(120deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(150deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(180deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(210deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(240deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(270deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(300deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(330deg)"></div>
-      </div>
+    <!-- desktop: logo + lotus (hidden on mobile) -->
+    <div class="hero-logo-lotus reveal">
       <img class="hmr-logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+      <svg class="hero-lotus" viewBox="-110 -110 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- outer 8 petals -->
+        <g class="lotus-outer">
+          <ellipse cx="0" cy="-54" rx="15" ry="44" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.58)" stroke-width="0.8"/>
+          <ellipse cx="0" cy="-54" rx="15" ry="44" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.58)" stroke-width="0.8" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-54" rx="15" ry="44" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.58)" stroke-width="0.8" transform="rotate(90)"/>
+          <ellipse cx="0" cy="-54" rx="15" ry="44" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.58)" stroke-width="0.8" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-54" rx="15" ry="44" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.58)" stroke-width="0.8" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-54" rx="15" ry="44" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.58)" stroke-width="0.8" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-54" rx="15" ry="44" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.58)" stroke-width="0.8" transform="rotate(270)"/>
+          <ellipse cx="0" cy="-54" rx="15" ry="44" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.58)" stroke-width="0.8" transform="rotate(315)"/>
+        </g>
+        <!-- inner 8 petals, offset 22.5° -->
+        <g class="lotus-inner">
+          <ellipse cx="0" cy="-36" rx="10" ry="28" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.62)" stroke-width="0.8" transform="rotate(22.5)"/>
+          <ellipse cx="0" cy="-36" rx="10" ry="28" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.62)" stroke-width="0.8" transform="rotate(67.5)"/>
+          <ellipse cx="0" cy="-36" rx="10" ry="28" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.62)" stroke-width="0.8" transform="rotate(112.5)"/>
+          <ellipse cx="0" cy="-36" rx="10" ry="28" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.62)" stroke-width="0.8" transform="rotate(157.5)"/>
+          <ellipse cx="0" cy="-36" rx="10" ry="28" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.62)" stroke-width="0.8" transform="rotate(202.5)"/>
+          <ellipse cx="0" cy="-36" rx="10" ry="28" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.62)" stroke-width="0.8" transform="rotate(247.5)"/>
+          <ellipse cx="0" cy="-36" rx="10" ry="28" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.62)" stroke-width="0.8" transform="rotate(292.5)"/>
+          <ellipse cx="0" cy="-36" rx="10" ry="28" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.62)" stroke-width="0.8" transform="rotate(337.5)"/>
+        </g>
+        <!-- center -->
+        <g class="lotus-center-g">
+          <circle cx="0" cy="0" r="18" fill="rgba(196,168,130,0.1)" stroke="rgba(196,168,130,0.55)" stroke-width="1"/>
+          <circle cx="0" cy="0" r="9"  fill="rgba(196,168,130,0.22)" stroke="rgba(196,168,130,0.4)" stroke-width="0.8"/>
+        </g>
+      </svg>
     </div>
     <p class="hero-tagline reveal d1">יוגה · נשימה · תרבות · סלעית</p>
     <div class="hero-text">
