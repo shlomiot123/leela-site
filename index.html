@@ -50,44 +50,59 @@
 .hmr-logo {
   height: 96px; width: auto;
   filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(2deg) brightness(1.15);
+  animation: logo-fadein 1.4s ease-out 0.3s both;
+}
+@keyframes logo-fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .hero-lotus { width: 240px; height: 240px; overflow: visible; }
 
-/* each petal grows from its root (base = center of flower) */
-.p-o, .p-i {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  animation: petal-grow 0.75s cubic-bezier(0.34,1.5,0.64,1) backwards;
+/* petal draw — stroke-dashoffset — slow meditative pace */
+.p-o {
+  stroke-dasharray: 215;
+  stroke-dashoffset: 215;
+  animation: petal-draw-o 3.2s cubic-bezier(0.4,0,0.25,1) both;
 }
-/* outer — stagger 0→0.7s */
+.p-i {
+  stroke-dasharray: 132;
+  stroke-dashoffset: 132;
+  animation: petal-draw-i 2.6s cubic-bezier(0.4,0,0.25,1) both;
+}
+/* outer — stagger 0→2.8s (0.4s between petals) */
 .p-o:nth-child(1){ animation-delay:0.00s }
-.p-o:nth-child(2){ animation-delay:0.10s }
-.p-o:nth-child(3){ animation-delay:0.20s }
-.p-o:nth-child(4){ animation-delay:0.30s }
-.p-o:nth-child(5){ animation-delay:0.40s }
-.p-o:nth-child(6){ animation-delay:0.50s }
-.p-o:nth-child(7){ animation-delay:0.60s }
-.p-o:nth-child(8){ animation-delay:0.70s }
-/* inner — starts 0.2s after outer begins */
-.p-i:nth-child(1){ animation-delay:0.20s }
-.p-i:nth-child(2){ animation-delay:0.30s }
-.p-i:nth-child(3){ animation-delay:0.40s }
-.p-i:nth-child(4){ animation-delay:0.50s }
-.p-i:nth-child(5){ animation-delay:0.60s }
-.p-i:nth-child(6){ animation-delay:0.70s }
-.p-i:nth-child(7){ animation-delay:0.80s }
-.p-i:nth-child(8){ animation-delay:0.90s }
+.p-o:nth-child(2){ animation-delay:0.40s }
+.p-o:nth-child(3){ animation-delay:0.80s }
+.p-o:nth-child(4){ animation-delay:1.20s }
+.p-o:nth-child(5){ animation-delay:1.60s }
+.p-o:nth-child(6){ animation-delay:2.00s }
+.p-o:nth-child(7){ animation-delay:2.40s }
+.p-o:nth-child(8){ animation-delay:2.80s }
+/* inner — starts 1.0s after first outer, 0.44s stagger */
+.p-i:nth-child(1){ animation-delay:1.00s }
+.p-i:nth-child(2){ animation-delay:1.44s }
+.p-i:nth-child(3){ animation-delay:1.88s }
+.p-i:nth-child(4){ animation-delay:2.32s }
+.p-i:nth-child(5){ animation-delay:2.76s }
+.p-i:nth-child(6){ animation-delay:3.20s }
+.p-i:nth-child(7){ animation-delay:3.64s }
+.p-i:nth-child(8){ animation-delay:4.08s }
 
 .lotus-center-g {
   transform-box: fill-box; transform-origin: 50% 50%;
-  animation: lotus-center-open 0.6s cubic-bezier(0.34,1.6,0.64,1) 0.9s backwards;
+  animation: lotus-center-open 1.6s cubic-bezier(0.34,1.5,0.64,1) 4.8s both;
 }
-/* whole lotus gently breathes after bloom */
-.hero-lotus { animation: lotus-breathe 5s ease-in-out 1.8s infinite; }
+.hero-lotus { animation: lotus-breathe 6s ease-in-out 9s infinite; }
 
-@keyframes petal-grow {
-  from { transform: scaleY(0); opacity: 0; }
-  to   { transform: scaleY(1); opacity: 1; }
+@keyframes petal-draw-o {
+  from { stroke-dashoffset: 215; opacity: 0; }
+  6%   { opacity: 1; }
+  to   { stroke-dashoffset: 0;   opacity: 1; }
+}
+@keyframes petal-draw-i {
+  from { stroke-dashoffset: 132; opacity: 0; }
+  6%   { opacity: 1; }
+  to   { stroke-dashoffset: 0;   opacity: 1; }
 }
 @keyframes lotus-center-open {
   from { transform: scale(0); opacity: 0; }
@@ -320,7 +335,7 @@
       <a href="index.html" style="color:rgba(247,243,238,0.85)">ראשי <span class="nav-caret">▾</span></a>
       <ul class="nav-submenu">
         <li><a href="#about-section">אודות</a></li>
-        <li><a href="#services-section">השיעורים שלנו</a></li>
+        <li><a href="#services-section">התרגולים שלנו</a></li>
         <li><a href="#events-section">אירועים</a></li>
         <li><a href="#gallery-section">גלריה</a></li>
         <li><a href="#contact-section">צור קשר</a></li>
@@ -355,27 +370,27 @@
       <img class="hmr-logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
       <svg class="hero-lotus" viewBox="-120 -120 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- outer 8 petals — each g rotates, ellipse animates scaleY from root -->
-        <g transform="rotate(0)">  <ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.07)" stroke="rgba(196,168,130,0.6)" stroke-width="0.9"/></g>
-        <g transform="rotate(45)"> <ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.07)" stroke="rgba(196,168,130,0.6)" stroke-width="0.9"/></g>
-        <g transform="rotate(90)"> <ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.07)" stroke="rgba(196,168,130,0.6)" stroke-width="0.9"/></g>
-        <g transform="rotate(135)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.07)" stroke="rgba(196,168,130,0.6)" stroke-width="0.9"/></g>
-        <g transform="rotate(180)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.07)" stroke="rgba(196,168,130,0.6)" stroke-width="0.9"/></g>
-        <g transform="rotate(225)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.07)" stroke="rgba(196,168,130,0.6)" stroke-width="0.9"/></g>
-        <g transform="rotate(270)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.07)" stroke="rgba(196,168,130,0.6)" stroke-width="0.9"/></g>
-        <g transform="rotate(315)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.07)" stroke="rgba(196,168,130,0.6)" stroke-width="0.9"/></g>
+        <g transform="rotate(0)">  <ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.06)" stroke="rgba(196,168,130,0.82)" stroke-width="1.1"/></g>
+        <g transform="rotate(45)"> <ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.06)" stroke="rgba(196,168,130,0.82)" stroke-width="1.1"/></g>
+        <g transform="rotate(90)"> <ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.06)" stroke="rgba(196,168,130,0.82)" stroke-width="1.1"/></g>
+        <g transform="rotate(135)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.06)" stroke="rgba(196,168,130,0.82)" stroke-width="1.1"/></g>
+        <g transform="rotate(180)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.06)" stroke="rgba(196,168,130,0.82)" stroke-width="1.1"/></g>
+        <g transform="rotate(225)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.06)" stroke="rgba(196,168,130,0.82)" stroke-width="1.1"/></g>
+        <g transform="rotate(270)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.06)" stroke="rgba(196,168,130,0.82)" stroke-width="1.1"/></g>
+        <g transform="rotate(315)"><ellipse class="p-o" cx="0" cy="-57" rx="14" ry="46" fill="rgba(196,168,130,0.06)" stroke="rgba(196,168,130,0.82)" stroke-width="1.1"/></g>
         <!-- inner 8 petals, offset 22.5° -->
-        <g transform="rotate(22.5)"> <ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.09)" stroke="rgba(168,197,176,0.65)" stroke-width="0.8"/></g>
-        <g transform="rotate(67.5)"> <ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.09)" stroke="rgba(168,197,176,0.65)" stroke-width="0.8"/></g>
-        <g transform="rotate(112.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.09)" stroke="rgba(168,197,176,0.65)" stroke-width="0.8"/></g>
-        <g transform="rotate(157.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.09)" stroke="rgba(168,197,176,0.65)" stroke-width="0.8"/></g>
-        <g transform="rotate(202.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.09)" stroke="rgba(168,197,176,0.65)" stroke-width="0.8"/></g>
-        <g transform="rotate(247.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.09)" stroke="rgba(168,197,176,0.65)" stroke-width="0.8"/></g>
-        <g transform="rotate(292.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.09)" stroke="rgba(168,197,176,0.65)" stroke-width="0.8"/></g>
-        <g transform="rotate(337.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.09)" stroke="rgba(168,197,176,0.65)" stroke-width="0.8"/></g>
+        <g transform="rotate(22.5)"> <ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.08)" stroke="rgba(168,197,176,0.85)" stroke-width="0.95"/></g>
+        <g transform="rotate(67.5)"> <ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.08)" stroke="rgba(168,197,176,0.85)" stroke-width="0.95"/></g>
+        <g transform="rotate(112.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.08)" stroke="rgba(168,197,176,0.85)" stroke-width="0.95"/></g>
+        <g transform="rotate(157.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.08)" stroke="rgba(168,197,176,0.85)" stroke-width="0.95"/></g>
+        <g transform="rotate(202.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.08)" stroke="rgba(168,197,176,0.85)" stroke-width="0.95"/></g>
+        <g transform="rotate(247.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.08)" stroke="rgba(168,197,176,0.85)" stroke-width="0.95"/></g>
+        <g transform="rotate(292.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.08)" stroke="rgba(168,197,176,0.85)" stroke-width="0.95"/></g>
+        <g transform="rotate(337.5)"><ellipse class="p-i" cx="0" cy="-38" rx="9" ry="29" fill="rgba(168,197,176,0.08)" stroke="rgba(168,197,176,0.85)" stroke-width="0.95"/></g>
         <!-- center -->
         <g class="lotus-center-g">
-          <circle cx="0" cy="0" r="16" fill="rgba(196,168,130,0.1)"  stroke="rgba(196,168,130,0.55)" stroke-width="1"/>
-          <circle cx="0" cy="0" r="8"  fill="rgba(196,168,130,0.2)"  stroke="rgba(196,168,130,0.38)" stroke-width="0.8"/>
+          <circle cx="0" cy="0" r="16" fill="rgba(196,168,130,0.1)"  stroke="rgba(196,168,130,0.75)" stroke-width="1.1"/>
+          <circle cx="0" cy="0" r="8"  fill="rgba(196,168,130,0.22)" stroke="rgba(196,168,130,0.55)" stroke-width="0.9"/>
         </g>
       </svg>
     </div>
