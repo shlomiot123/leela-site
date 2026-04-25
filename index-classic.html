@@ -11,11 +11,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap');
 
 /* ── HERO ─────────────────────────────────── */
-@keyframes hero-spin    { to { transform: rotate(360deg)  } }
-@keyframes hero-spin-rev{ to { transform: rotate(-360deg) } }
-@keyframes hero-pulse   { 0%,100%{opacity:0.35} 50%{opacity:0.7} }
-@keyframes hero-breathe { 0%,100%{opacity:0.55;transform:scale(1)} 50%{opacity:0.85;transform:scale(1.04)} }
-
 #hero {
   min-height: 100vh;
   display: flex; align-items: center;
@@ -30,60 +25,21 @@
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 110% 110% at 50% 42%,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.55) 55%,
-    rgba(0,0,0,0.82) 100%
+  background: linear-gradient(
+    to right,
+    rgba(20,16,14,0) 0%,
+    rgba(20,16,14,0.18) 38%,
+    rgba(20,16,14,0.72) 60%,
+    rgba(20,16,14,0.9) 100%
   );
 }
 .hero-content {
   position: relative; z-index: 2;
-  max-width: 900px; margin: 0 auto;
+  max-width: 1200px; margin: 0 auto;
   padding: 0 60px;
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; width: 100%; text-align: center;
+  display: flex; align-items: center; width: 100%;
 }
-
-/* ── Mandala (desktop only) ── */
-.hero-mandala-wrap {
-  position: relative; width: 260px; height: 260px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 28px;
-}
-.hmr { position: absolute; border-radius: 50%; }
-.hmr1 { inset:   0; border: 1px solid rgba(196,168,130,0.48); animation: hero-spin     28s linear infinite; }
-.hmr2 { inset: 16px; border: 1px dashed rgba(196,168,130,0.22); animation: hero-spin-rev 18s linear infinite; }
-.hmr3 { inset: 32px; border: 1px solid rgba(196,168,130,0.14); animation: hero-spin     42s linear infinite; }
-.hmr4 { inset: 48px; border: 1px solid rgba(168,197,176,0.16); animation: hero-spin-rev 58s linear infinite; }
-.hmr-glow {
-  position: absolute; border-radius: 50%;
-  width: 140px; height: 140px;
-  background: radial-gradient(circle, rgba(196,168,130,0.14) 0%, transparent 70%);
-  animation: hero-breathe 5s ease-in-out infinite;
-}
-/* tick marks on outer ring */
-.hmr-ticks { position: absolute; inset: 0; animation: hero-spin 28s linear infinite; }
-.hmr-tick  {
-  position: absolute; top: 50%; left: 50%;
-  width: 1px; height: 8px;
-  background: rgba(196,168,130,0.55);
-  transform-origin: 50% 130px;
-  margin-top: -130px; margin-left: -0.5px;
-}
-.hmr-logo {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  height: 72px; width: auto;
-  filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(2deg) brightness(1.1);
-}
-.hero-tagline {
-  font-size: 0.72rem; letter-spacing: 0.32em;
-  color: rgba(255,255,255,0.45); font-weight: 300;
-  font-family: 'DM Sans', sans-serif;
-  margin-bottom: 26px;
-}
-
-.hero-text { padding: 0 0 80px; max-width: 680px; }
+.hero-text { padding: 120px 0 100px; max-width: 640px; }
 .hero-script {
   font-family: 'Great Vibes', cursive;
   font-size: 1.6rem; color: rgba(196,168,130,0.9);
@@ -91,20 +47,20 @@
 }
 .hero-h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 5.5vw, 4.8rem);
-  font-weight: 400; color: #F7F3EE;
-  line-height: 1.06; margin-bottom: 20px;
+  font-size: clamp(3rem, 6vw, 5.2rem);
+  font-weight: 500; color: #F7F3EE;
+  line-height: 1.08; margin-bottom: 24px;
   letter-spacing: -0.01em;
 }
 .hero-h1 em { font-style: italic; color: rgba(168,197,176,0.95); }
 .hero-sub {
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.05rem; font-weight: 300;
-  color: rgba(247,243,238,0.68);
-  line-height: 1.7; margin: 0 auto 40px;
-  max-width: 440px;
+  font-size: 1.1rem; font-weight: 300;
+  color: rgba(247,243,238,0.72);
+  line-height: 1.7; margin-bottom: 44px;
+  max-width: 420px;
 }
-.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-mobile-logo { display: none; }
 
 /* ── SERVICES PHOTO GRID ─────────────────── */
@@ -214,13 +170,19 @@
 @media(max-width:640px){
   #hero { min-height:100svh; display:flex; align-items:flex-end; }
   .hero-bg-img { object-position:40% 35%; }
-  .hero-content { padding:0 20px 52px; display:block; width:100%; text-align:right; }
+  .hero-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(20,16,14,0.92) 0%,
+      rgba(20,16,14,0.7) 45%,
+      rgba(20,16,14,0.2) 100%
+    );
+  }
+  .hero-content { padding:0 20px 52px; display:block; width:100%; }
   .hero-text { padding:80px 0 0; max-width:100%; }
-  .hero-tagline { display:none; }
-  .hero-mandala-wrap { display:none; }
-  .hero-h1 { font-size:clamp(2.4rem,10vw,3.2rem); text-shadow:0 1px 12px rgba(247,243,238,0.25); }
-  .hero-sub { font-size:1rem; max-width:100%; margin-bottom:32px; }
-  .hero-cta { flex-direction:column; gap:12px; justify-content:flex-start; }
+  .hero-h1 { font-size:clamp(2.2rem,9vw,3rem); }
+  .hero-sub { font-size:0.95rem; max-width:100%; margin-bottom:32px; }
+  .hero-cta { flex-direction:column; gap:12px; }
   .hero-cta a, .hero-cta button { width:100%; justify-content:center; text-align:center; }
 
   /* Design #2: cream-from-bottom overlay, dark text, logo at top */
@@ -228,14 +190,15 @@
     background: linear-gradient(
       to top,
       rgba(247,243,238,1) 0%,
-      rgba(247,243,238,0.95) 22%,
-      rgba(247,243,238,0.5) 48%,
-      transparent 72%
+      rgba(247,243,238,0.82) 30%,
+      rgba(247,243,238,0.18) 62%,
+      transparent 100%
     ) !important;
   }
-  .hero-h1 { color: var(--brown) !important; font-weight:500 !important; }
+  .hero-h1 { color: var(--brown) !important; }
   .hero-h1 em { color: var(--sage) !important; }
-  .hero-sub { color: rgba(61,53,48,0.82) !important; font-size:1rem !important; }
+  .hero-script { color: rgba(123,158,135,0.85) !important; }
+  .hero-sub { color: rgba(61,53,48,0.72) !important; }
   .hero-cta a[href="yoga.html"] {
     background: var(--brown) !important; border-color: var(--brown) !important; color: var(--cream) !important;
   }
@@ -328,38 +291,14 @@
     <span style="display:none;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:white;letter-spacing:0.15em">לי<span style="color:rgba(168,197,176,0.9)">לא</span></span>
   </div>
   <div class="hero-content">
-    <!-- desktop mandala (hidden on mobile) -->
-    <div class="hero-mandala-wrap reveal">
-      <div class="hmr hmr1"></div>
-      <div class="hmr hmr2"></div>
-      <div class="hmr hmr3"></div>
-      <div class="hmr hmr4"></div>
-      <div class="hmr-glow"></div>
-      <div class="hmr-ticks">
-        <div class="hmr-tick" style="transform:rotate(0deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(30deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(60deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(90deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(120deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(150deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(180deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(210deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(240deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(270deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(300deg)"></div>
-        <div class="hmr-tick" style="transform:rotate(330deg)"></div>
-      </div>
-      <img class="hmr-logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
-    </div>
-    <p class="hero-tagline reveal d1">יוגה · נשימה · תרבות · סלעית</p>
     <div class="hero-text">
-      <h1 class="hero-h1 reveal d2">
-        בית ליוגה, <em>התפתחות</em> ונשימה
+      <h1 class="hero-h1 reveal d1">
+        בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה
       </h1>
-      <p class="hero-sub reveal d3">
-        תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד, בלב אזור סלעית.
+      <p class="hero-sub reveal d2">
+        תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי —<br/>כולם יחד, בלב אזור סלעית.
       </p>
-      <div class="hero-cta reveal d4">
+      <div class="hero-cta reveal d3">
         <a href="yoga.html" class="btn-primary">לשיעורי יוגה</a>
         <a href="#events-section" class="btn-outline" style="border-color:rgba(247,243,238,0.45);color:rgba(247,243,238,0.9)">אירועים קרובים</a>
       </div>
@@ -656,7 +595,7 @@
     <div class="footer-col"><h4>תרגולים</h4><ul><li><a href="yoga.html">קונדליני יוגה</a></li><li><a href="yoga.html">האת'ה ויין</a></li><li><a href="culture.html">ריפוי בצלילים</a></li><li><a href="culture.html">ציור בוטני</a></li></ul></div>
     <div class="footer-col"><h4>צור קשר</h4><ul><li><a href="mailto:leela.salit@gmail.com">leela.salit@gmail.com</a></li><li><a href="tel:+972523511064">052-3511064</a></li><li><a>אזור תעשייה סלית</a></li></ul></div>
   </div>
-  <div class="footer-bottom"><span>© 2025 לילא</span><img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:22px;width:auto;opacity:0.45;filter:sepia(0.3)"/><a href="index-classic.html" style="font-size:0.65rem;opacity:0.3;color:inherit;text-decoration:none;margin-right:auto">עיצוב קלאסי</a></div>
+  <div class="footer-bottom"><span>© 2025 לילא</span><img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:22px;width:auto;opacity:0.45;filter:sepia(0.3)"/></div>
 </footer>
 
 <script src="js/events-data.js"></script>
