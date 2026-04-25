@@ -61,6 +61,7 @@
   max-width: 420px;
 }
 .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-mobile-logo { display: none; }
 
 /* ── SERVICES PHOTO GRID ─────────────────── */
 .svcs-photo-grid {
@@ -184,6 +185,32 @@
   .hero-cta { flex-direction:column; gap:12px; }
   .hero-cta a, .hero-cta button { width:100%; justify-content:center; text-align:center; }
 
+  /* Design #2: cream-from-bottom overlay, dark text, logo at top */
+  .hero-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(247,243,238,1) 0%,
+      rgba(247,243,238,0.82) 30%,
+      rgba(247,243,238,0.18) 62%,
+      transparent 100%
+    ) !important;
+  }
+  .hero-h1 { color: var(--brown) !important; }
+  .hero-h1 em { color: var(--sage) !important; }
+  .hero-script { color: rgba(123,158,135,0.85) !important; }
+  .hero-sub { color: rgba(61,53,48,0.72) !important; }
+  .hero-cta a[href="yoga.html"] {
+    background: var(--brown) !important; border-color: var(--brown) !important; color: var(--cream) !important;
+  }
+  .btn-outline[href="#events-section"] {
+    border-color: rgba(61,53,48,0.35) !important; color: var(--brown) !important;
+  }
+  .hero-mobile-logo {
+    display: flex !important; justify-content: center; align-items: center;
+    position: absolute; top: 72px; right: 0; left: 0; z-index: 3;
+  }
+  .hero-mobile-logo img { height: 44px; width: auto; filter: none; }
+
   /* Pillars: 2 per row */
   .pillars-row { grid-template-columns:1fr 1fr; gap:12px; margin-top:24px; }
   .pillar-new { padding-top:14px; }
@@ -259,6 +286,10 @@
 <section id="hero">
   <img class="hero-bg-img" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=1920&q=90" alt="לילא"/>
   <div class="hero-overlay"></div>
+  <div class="hero-mobile-logo">
+    <img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <span style="display:none;font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:white;letter-spacing:0.15em">לי<span style="color:rgba(168,197,176,0.9)">לא</span></span>
+  </div>
   <div class="hero-content">
     <div class="hero-text">
       <span class="hero-script reveal">מרחב שקט לגוף ולנשמה</span>
