@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>עיצובי הירו — גרסה 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#111;font-family:'DM Sans',sans-serif;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:60px}
+.page-title{color:rgba(255,255,255,0.5);font-size:0.85rem;letter-spacing:0.2em;text-align:center;margin-bottom:10px}
+
+.phone{width:360px;height:700px;border-radius:36px;overflow:hidden;position:relative;flex-shrink:0;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+.label{color:rgba(255,255,255,0.4);font-size:0.72rem;letter-spacing:0.18em;text-align:center;margin-bottom:8px}
+
+/* shared image */
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ── 1. FULL DARK MINIMAL ────────────────────── */
+#d1{background:#0d0d0d}
+#d1 .bg{opacity:0.55;object-position:50% 30%}
+#d1 .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,transparent 30%,rgba(0,0,0,0.7) 100%)}
+#d1 .content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 32px}
+#d1 .logo{height:36px;filter:brightness(0) invert(1);margin-bottom:48px}
+#d1 h1{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:300;color:#fff;line-height:1.05;letter-spacing:-0.01em}
+#d1 h1 em{font-style:italic;color:rgba(168,197,176,0.9)}
+#d1 .tagline{font-size:0.75rem;letter-spacing:0.25em;color:rgba(255,255,255,0.45);margin-top:20px;font-weight:300}
+#d1 .ctas{position:absolute;bottom:52px;left:32px;right:32px;display:flex;flex-direction:column;gap:10px}
+#d1 .btn-a{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:14px;border-radius:10px;font-size:0.9rem;text-align:center;backdrop-filter:blur(6px)}
+#d1 .btn-b{color:rgba(255,255,255,0.5);text-align:center;font-size:0.8rem;padding:8px;letter-spacing:0.12em}
+
+/* ── 2. SAGE WASH ──────────────────────────────── */
+#d2{background:#2d4a38}
+#d2 .bg{opacity:0.35;mix-blend-mode:luminosity;object-position:50% 25%}
+#d2 .wash{position:absolute;inset:0;background:linear-gradient(160deg,rgba(94,126,107,0.88) 0%,rgba(35,56,43,0.92) 100%)}
+#d2 .content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:72px 32px 52px}
+#d2 .top{display:flex;justify-content:space-between;align-items:center}
+#d2 .logo{height:30px;filter:brightness(0) invert(1);opacity:0.85}
+#d2 .badge{font-family:'Cormorant Garamond',serif;font-size:0.72rem;color:rgba(255,255,255,0.5);letter-spacing:0.18em;border:1px solid rgba(255,255,255,0.2);padding:4px 10px;border-radius:20px}
+#d2 .bottom{}
+#d2 .label-sm{font-size:0.68rem;letter-spacing:0.25em;color:rgba(255,255,255,0.5);margin-bottom:16px}
+#d2 h1{font-family:'Cormorant Garamond',serif;font-size:3.6rem;font-weight:300;color:#fff;line-height:1.04;margin-bottom:20px}
+#d2 h1 em{font-style:italic}
+#d2 p{font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:28px;max-width:280px}
+#d2 .cta{display:inline-block;background:#fff;color:#2d4a38;padding:13px 28px;border-radius:8px;font-size:0.88rem;font-weight:500}
+
+/* ── 3. BOTTOM CARD ────────────────────────────── */
+#d3{background:#111}
+#d3 .bg{height:62%;object-position:50% 20%}
+#d3 .img-gradient{position:absolute;top:52%;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,#1a1410)}
+#d3 .card{position:absolute;bottom:0;left:0;right:0;background:#1a1410;padding:32px 28px 48px;border-radius:28px 28px 0 0}
+#d3 .logo{height:26px;filter:brightness(0) invert(1);opacity:0.7;margin-bottom:24px}
+#d3 h1{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;color:#F7F3EE;line-height:1.1;margin-bottom:12px}
+#d3 h1 em{font-style:italic;color:rgba(196,168,130,0.9)}
+#d3 p{font-size:0.8rem;color:rgba(247,243,238,0.5);line-height:1.65;margin-bottom:24px}
+#d3 .row{display:flex;gap:10px}
+#d3 .btn-a{flex:1;background:rgba(196,168,130,0.15);border:1px solid rgba(196,168,130,0.3);color:rgba(196,168,130,0.9);padding:12px;border-radius:8px;font-size:0.82rem;text-align:center}
+#d3 .btn-b{flex:1;background:#C4A882;color:#1a1410;padding:12px;border-radius:8px;font-size:0.82rem;font-weight:500;text-align:center}
+
+/* ── 4. EDITORIAL SPLIT ────────────────────────── */
+#d4{background:#F7F3EE}
+#d4 .bg{height:48%;object-position:50% 30%;border-radius:0 0 28px 28px}
+#d4 .img-over{position:absolute;top:0;left:0;right:0;height:48%;background:linear-gradient(to top,rgba(247,243,238,0.9) 0%,transparent 50%);border-radius:0 0 28px 28px}
+#d4 .content{position:absolute;top:38%;left:0;right:0;padding:0 28px 0}
+#d4 .logo-wrap{display:flex;justify-content:center;margin-bottom:22px}
+#d4 .logo{height:34px}
+#d4 .divider{height:1px;background:rgba(61,53,48,0.12);margin-bottom:22px}
+#d4 h1{font-family:'Cormorant Garamond',serif;font-size:2.9rem;font-weight:300;color:#3D3530;line-height:1.08;text-align:center;margin-bottom:14px}
+#d4 h1 em{font-style:italic;color:#5E7E6B}
+#d4 p{font-size:0.78rem;color:rgba(61,53,48,0.6);text-align:center;line-height:1.7;margin-bottom:26px}
+#d4 .ctas{display:flex;flex-direction:column;gap:10px}
+#d4 .btn-a{background:#3D3530;color:#F7F3EE;padding:14px;border-radius:10px;font-size:0.88rem;text-align:center}
+#d4 .btn-b{border:1px solid rgba(61,53,48,0.2);color:#3D3530;padding:13px;border-radius:10px;font-size:0.85rem;text-align:center}
+
+/* ── 5. FROSTED GLASS ──────────────────────────── */
+#d5{background:#222}
+#d5 .bg{opacity:0.8;object-position:50% 25%}
+#d5 .content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 20px 44px}
+#d5 .glass{background:rgba(255,255,255,0.08);backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:28px 24px}
+#d5 .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+#d5 .logo{height:26px;filter:brightness(0) invert(1);opacity:0.85}
+#d5 .dot-row{display:flex;gap:6px}
+#d5 .dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.3)}
+#d5 .dot.a{background:rgba(196,168,130,0.8)}
+#d5 h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#fff;line-height:1.08;margin-bottom:12px}
+#d5 h1 em{font-style:italic;color:rgba(168,197,176,0.9)}
+#d5 p{font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.65;margin-bottom:22px}
+#d5 .cta{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:13px 24px;border-radius:10px;font-size:0.88rem;text-align:center;backdrop-filter:blur(6px)}
+
+/* ── 6. HUGE LETTER ─────────────────────────────── */
+#d6{background:#F0EBE3}
+#d6 .bg{opacity:0.22;object-position:50% 30%;mix-blend-mode:multiply}
+#d6 .big-letter{position:absolute;font-family:'Cormorant Garamond',serif;font-size:320px;font-weight:300;font-style:italic;color:rgba(61,53,48,0.06);line-height:1;top:50%;left:50%;transform:translate(-50%,-52%);pointer-events:none;user-select:none}
+#d6 .content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:70px 32px 52px}
+#d6 .logo{height:32px;align-self:center}
+#d6 .main{}
+#d6 .eyebrow{font-size:0.68rem;letter-spacing:0.28em;color:rgba(94,126,107,0.8);margin-bottom:16px;font-weight:500}
+#d6 h1{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:400;color:#3D3530;line-height:1.06;margin-bottom:8px}
+#d6 h1 em{font-style:italic;color:#5E7E6B}
+#d6 .rule{width:40px;height:2px;background:#C4A882;margin:18px 0}
+#d6 p{font-size:0.78rem;color:rgba(61,53,48,0.55);line-height:1.7;max-width:260px;margin-bottom:28px}
+#d6 .cta{background:#3D3530;color:#F0EBE3;padding:14px 28px;border-radius:8px;font-size:0.88rem;font-weight:500;display:inline-block}
+
+/* ── 7. DIAGONAL CUT ────────────────────────────── */
+#d7{background:#1C1812;overflow:hidden}
+#d7 .img-wrap{position:absolute;inset:0;clip-path:polygon(0 0,100% 0,100% 58%,0 72%)}
+#d7 .bg{height:100%;object-position:50% 25%}
+#d7 .diag-shadow{position:absolute;top:52%;left:0;right:0;height:100px;background:linear-gradient(to bottom,transparent,#1C1812)}
+#d7 .content{position:absolute;bottom:0;left:0;right:0;padding:0 28px 50px}
+#d7 .logo{height:24px;filter:brightness(0) invert(1);opacity:0.65;margin-bottom:28px}
+#d7 .accent{display:inline-block;font-size:0.65rem;letter-spacing:0.22em;color:rgba(196,168,130,0.7);border-right:2px solid rgba(196,168,130,0.6);padding-right:10px;margin-bottom:14px}
+#d7 h1{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:#F7F3EE;line-height:1.06;margin-bottom:16px}
+#d7 h1 em{font-style:italic;color:rgba(168,197,176,0.9)}
+#d7 .ctas{display:flex;gap:10px}
+#d7 .btn-a{flex:1;background:rgba(196,168,130,0.9);color:#1C1812;padding:13px;border-radius:8px;font-size:0.85rem;font-weight:500;text-align:center}
+#d7 .btn-b{flex:1;border:1px solid rgba(247,243,238,0.2);color:rgba(247,243,238,0.7);padding:13px;border-radius:8px;font-size:0.85rem;text-align:center}
+
+/* ── 8. CENTERED BOLD ──────────────────────────── */
+#d8{background:#0A0806}
+#d8 .bg{opacity:0.4;object-position:50% 20%}
+#d8 .bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,rgba(168,197,176,0),rgba(168,197,176,0.8),rgba(168,197,176,0))}
+#d8 .content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 28px}
+#d8 .logo{height:40px;filter:brightness(0) invert(1);opacity:0.9;margin-bottom:32px}
+#d8 .line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(196,168,130,0.6),transparent);margin:0 auto 32px}
+#d8 h1{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;color:#F7F3EE;line-height:1.02;letter-spacing:-0.02em;margin-bottom:6px}
+#d8 h1 em{display:block;font-style:italic;color:rgba(168,197,176,0.85);font-size:4.2rem}
+#d8 .sub{font-size:0.7rem;letter-spacing:0.3em;color:rgba(255,255,255,0.35);margin-top:20px;font-weight:300}
+#d8 .ctas{position:absolute;bottom:50px;left:28px;right:28px;display:flex;gap:12px}
+#d8 .btn-a{flex:1;background:rgba(168,197,176,0.15);border:1px solid rgba(168,197,176,0.35);color:rgba(168,197,176,0.9);padding:13px;border-radius:8px;font-size:0.82rem;text-align:center}
+#d8 .btn-b{flex:1;background:rgba(196,168,130,0.9);color:#0A0806;padding:13px;border-radius:8px;font-size:0.82rem;font-weight:500;text-align:center}
+
+/* ── 9. LAYERED STRIPS ─────────────────────────── */
+#d9{background:#E8E1D7}
+#d9 .strip-img{position:absolute;top:0;left:0;right:0;height:55%;overflow:hidden}
+#d9 .strip-img img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:contrast(1.05)}
+#d9 .strip-gold{position:absolute;top:50%;left:0;right:0;height:12px;background:linear-gradient(to right,rgba(196,168,130,0.3),rgba(196,168,130,0.9),rgba(196,168,130,0.3))}
+#d9 .content{position:absolute;bottom:0;left:0;right:0;padding:0 28px 48px;background:linear-gradient(to top,#E8E1D7 70%,transparent)}
+#d9 .logo{height:30px;margin-bottom:18px;display:block}
+#d9 h1{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:#2B2420;line-height:1.06;margin-bottom:10px}
+#d9 h1 em{font-style:italic;color:#5E7E6B}
+#d9 p{font-size:0.78rem;color:rgba(43,36,32,0.55);line-height:1.68;margin-bottom:22px}
+#d9 .ctas{display:flex;gap:10px}
+#d9 .btn-a{flex:1;background:#2B2420;color:#E8E1D7;padding:13px;border-radius:8px;font-size:0.82rem;text-align:center}
+#d9 .btn-b{flex:1;border:1px solid rgba(43,36,32,0.2);color:#2B2420;padding:13px;border-radius:8px;font-size:0.82rem;text-align:center}
+
+/* ── 10. PORTRAIT MODE ─────────────────────────── */
+#d10{background:#F4EFE8}
+#d10 .portrait{position:absolute;top:24px;left:50%;transform:translateX(-50%);width:220px;height:300px;border-radius:120px 120px 60px 60px;overflow:hidden;box-shadow:0 20px 60px rgba(61,53,48,0.2)}
+#d10 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+#d10 .portrait-ring{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:228px;height:308px;border-radius:122px 122px 62px 62px;border:1.5px solid rgba(196,168,130,0.45)}
+#d10 .content{position:absolute;bottom:0;left:0;right:0;padding:0 28px 48px;text-align:center}
+#d10 .logo{height:32px;margin:0 auto 24px;display:block}
+#d10 .tagline-sm{font-size:0.65rem;letter-spacing:0.25em;color:rgba(94,126,107,0.7);margin-bottom:12px;font-weight:500}
+#d10 h1{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#3D3530;line-height:1.08;margin-bottom:10px}
+#d10 h1 em{font-style:italic;color:#5E7E6B}
+#d10 p{font-size:0.76rem;color:rgba(61,53,48,0.55);line-height:1.65;margin-bottom:24px}
+#d10 .cta{background:#3D3530;color:#F4EFE8;padding:14px 32px;border-radius:50px;font-size:0.88rem;font-weight:500;display:inline-block}
+</style>
+</head>
+<body>
+
+<p class="page-title">עיצובי הירו — מובייל — גרסה 2</p>
+
+<!-- DESIGN 1 -->
+<div>
+<p class="label">1 — DARK MINIMAL — טקסט מרכזי, רקע כהה</p>
+<div class="phone" id="d1">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/>
+  <div class="vignette"></div>
+  <div class="content">
+    <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    <h1>בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+    <p class="tagline">יוגה · נשימה · תרבות · סלעית</p>
+  </div>
+  <div class="ctas">
+    <div class="btn-a">לשיעורי יוגה</div>
+    <div class="btn-b">אירועים קרובים →</div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 2 -->
+<div>
+<p class="label">2 — SAGE WASH — שטיפת צבע ירוק, לוגו בפינה</p>
+<div class="phone" id="d2">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/>
+  <div class="wash"></div>
+  <div class="content">
+    <div class="top">
+      <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+      <div class="badge">סלעית</div>
+    </div>
+    <div class="bottom">
+      <p class="label-sm">יוגה · נשימה · תרבות</p>
+      <h1>בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+      <p>תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד, בלב אזור סלעית.</p>
+      <div class="cta">לשיעורי יוגה</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 3 -->
+<div>
+<p class="label">3 — BOTTOM CARD — כרטיס כהה עולה מתחת לתמונה</p>
+<div class="phone" id="d3">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/>
+  <div class="img-gradient"></div>
+  <div class="card">
+    <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    <h1>בית ליוגה,<br/><em>התפתחות</em> ונשימה</h1>
+    <p>תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד.</p>
+    <div class="row">
+      <div class="btn-a">אירועים קרובים</div>
+      <div class="btn-b">לשיעורי יוגה</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 4 -->
+<div>
+<p class="label">4 — EDITORIAL — תמונה למעלה, טקסט בהיר מתחת</p>
+<div class="phone" id="d4">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/>
+  <div class="img-over"></div>
+  <div class="content">
+    <div class="logo-wrap">
+      <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    </div>
+    <div class="divider"></div>
+    <h1>בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+    <p>תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד, בלב אזור סלעית.</p>
+    <div class="ctas">
+      <div class="btn-a">לשיעורי יוגה</div>
+      <div class="btn-b">אירועים קרובים</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 5 -->
+<div>
+<p class="label">5 — FROSTED GLASS — כרטיס זכוכית מעומעמת</p>
+<div class="phone" id="d5">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/>
+  <div class="content">
+    <div class="glass">
+      <div class="top-row">
+        <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+        <div class="dot-row"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+      <h1>בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+      <p>תרגול יומיומי, ריפוי בצלילים ותוכן תרבותי — בלב סלעית.</p>
+      <div class="cta">לשיעורי יוגה</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 6 -->
+<div>
+<p class="label">6 — GIANT LETTER — האות ל׳ ענקית, קרמי בהיר</p>
+<div class="phone" id="d6">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/>
+  <div class="big-letter">ל</div>
+  <div class="content">
+    <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    <div class="main">
+      <p class="eyebrow">יוגה · נשימה · תרבות</p>
+      <h1>בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+      <div class="rule"></div>
+      <p>תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — בלב אזור סלעית.</p>
+      <div class="cta">לשיעורי יוגה</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 7 -->
+<div>
+<p class="label">7 — DIAGONAL CUT — חיתוך אלכסוני, חצי תמונה חצי כהה</p>
+<div class="phone" id="d7">
+  <div class="img-wrap">
+    <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/>
+  </div>
+  <div class="diag-shadow"></div>
+  <div class="content">
+    <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    <span class="accent">יוגה · נשימה · תרבות</span>
+    <h1>בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+    <div class="ctas">
+      <div class="btn-a">לשיעורי יוגה</div>
+      <div class="btn-b">אירועים קרובים</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 8 -->
+<div>
+<p class="label">8 — CENTERED BOLD — לוגו + קו אנכי + כותרת גדולה, מרכזי</p>
+<div class="phone" id="d8">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/>
+  <div class="bar"></div>
+  <div class="content">
+    <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    <div class="line"></div>
+    <h1>בית<br/>ליוגה,<br/><em>התפתחות</em></h1>
+    <p class="sub">יוגה · נשימה · תרבות · סלעית</p>
+  </div>
+  <div class="ctas">
+    <div class="btn-a">אירועים קרובים</div>
+    <div class="btn-b">לשיעורי יוגה</div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 9 -->
+<div>
+<p class="label">9 — LAYERED STRIPS — רצועת תמונה + פס זהב + טקסט</p>
+<div class="phone" id="d9">
+  <div class="strip-img"><img src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/></div>
+  <div class="strip-gold"></div>
+  <div class="content">
+    <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    <h1>בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+    <p>תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד, בלב אזור סלעית.</p>
+    <div class="ctas">
+      <div class="btn-a">לשיעורי יוגה</div>
+      <div class="btn-b">אירועים קרובים</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- DESIGN 10 -->
+<div>
+<p class="label">10 — PORTRAIT FRAME — תמונה בצורת פורטרט מעוגל</p>
+<div class="phone" id="d10">
+  <div class="portrait"><img src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=85" alt=""/></div>
+  <div class="portrait-ring"></div>
+  <div class="content">
+    <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    <p class="tagline-sm">יוגה · נשימה · תרבות</p>
+    <h1>בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+    <p>תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — בלב אזור סלעית.</p>
+    <div class="cta">לשיעורי יוגה</div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
