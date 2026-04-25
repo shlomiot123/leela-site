@@ -780,7 +780,7 @@ footer {
   margin-top: var(--nav-h);
 }
 .page-hero-img {
-  position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; opacity: 0.25;
+  position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; opacity: 0.75;
 }
 .page-hero-overlay {
   position: absolute; inset: 0;
