@@ -2,7 +2,7 @@
    LEELA — Shared Design System (RTL Hebrew)
    ═══════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
 
 /* ─── Variables ────────────────────────────────────────────────── */
 :root {
@@ -52,10 +52,10 @@ body::after {
 }
 
 /* ─── Typography ───────────────────────────────────────────────── */
-.font-display { font-family: 'Playfair Display', serif; }
+.font-display { font-family: 'Cormorant Garamond', serif; }
 .font-script  { font-family: 'Great Vibes', cursive; }
 
-h1,h2,h3 { font-family: 'Playfair Display', serif; font-weight: 400; line-height: 1.12; }
+h1,h2,h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; line-height: 1.12; }
 h1 { font-size: clamp(2.8rem, 7vw, 6.5rem); font-weight: 500; }
 h2 { font-size: clamp(2rem, 4vw, 3.8rem); font-weight: 400; }
 h3 { font-size: clamp(1.3rem, 2.5vw, 2rem); font-weight: 400; }
