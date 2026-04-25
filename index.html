@@ -13,96 +13,94 @@
 /* ── HERO ─────────────────────────────────── */
 @keyframes hero-spin    { to { transform: rotate(360deg)  } }
 @keyframes hero-spin-rev{ to { transform: rotate(-360deg) } }
-@keyframes hero-pulse   { 0%,100%{opacity:0.35} 50%{opacity:0.7} }
-@keyframes hero-breathe { 0%,100%{opacity:0.55;transform:scale(1)} 50%{opacity:0.85;transform:scale(1.04)} }
+@keyframes hero-pulse   { 0%,100%{opacity:0.4} 50%{opacity:0.85} }
+@keyframes hero-breathe { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
 
 #hero {
   min-height: 100vh;
   display: flex; align-items: center;
   position: relative; overflow: hidden;
-  padding-top: 0;
+  padding-top: 80px;
 }
 .hero-bg-img {
   position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
-  object-position: center 35%;
+  object-position: center 30%;
   opacity: 1;
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 110% 110% at 50% 42%,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.55) 55%,
-    rgba(0,0,0,0.82) 100%
-  );
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 38%, rgba(196,168,130,0.08) 0%, transparent 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.48) 0%, rgba(0,0,0,0.78) 100%);
 }
 .hero-content {
   position: relative; z-index: 2;
-  max-width: 900px; margin: 0 auto;
-  padding: 0 60px;
+  width: 100%; max-width: 860px; margin: 0 auto;
+  padding: 40px 60px 56px;
   display: flex; flex-direction: column; align-items: center;
-  justify-content: center; width: 100%; text-align: center;
+  text-align: center;
 }
 
 /* ── Mandala (desktop only) ── */
 .hero-mandala-wrap {
-  position: relative; width: 260px; height: 260px;
+  position: relative; width: 300px; height: 300px;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 28px;
+  flex-shrink: 0; margin-bottom: 22px;
 }
 .hmr { position: absolute; border-radius: 50%; }
-.hmr1 { inset:   0; border: 1px solid rgba(196,168,130,0.48); animation: hero-spin     28s linear infinite; }
-.hmr2 { inset: 16px; border: 1px dashed rgba(196,168,130,0.22); animation: hero-spin-rev 18s linear infinite; }
-.hmr3 { inset: 32px; border: 1px solid rgba(196,168,130,0.14); animation: hero-spin     42s linear infinite; }
-.hmr4 { inset: 48px; border: 1px solid rgba(168,197,176,0.16); animation: hero-spin-rev 58s linear infinite; }
+.hmr1 { inset:  0;    border: 1.5px solid rgba(196,168,130,0.72); animation: hero-spin     28s linear infinite; }
+.hmr2 { inset: 18px;  border: 1px   dashed rgba(196,168,130,0.42); animation: hero-spin-rev 18s linear infinite; }
+.hmr3 { inset: 36px;  border: 1px   solid  rgba(196,168,130,0.28); animation: hero-spin     44s linear infinite; }
+.hmr4 { inset: 54px;  border: 1px   solid  rgba(168,197,176,0.32); animation: hero-spin-rev 60s linear infinite; }
 .hmr-glow {
   position: absolute; border-radius: 50%;
-  width: 140px; height: 140px;
-  background: radial-gradient(circle, rgba(196,168,130,0.14) 0%, transparent 70%);
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(196,168,130,0.28) 0%, transparent 70%);
   animation: hero-breathe 5s ease-in-out infinite;
 }
-/* tick marks on outer ring */
 .hmr-ticks { position: absolute; inset: 0; animation: hero-spin 28s linear infinite; }
 .hmr-tick  {
   position: absolute; top: 50%; left: 50%;
-  width: 1px; height: 8px;
-  background: rgba(196,168,130,0.55);
-  transform-origin: 50% 130px;
-  margin-top: -130px; margin-left: -0.5px;
+  width: 1.5px; height: 9px;
+  background: rgba(196,168,130,0.75);
+  transform-origin: 50% 150px;
+  margin-top: -150px; margin-left: -0.75px;
 }
 .hmr-logo {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  height: 72px; width: auto;
-  filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(2deg) brightness(1.1);
+  height: 92px; width: auto;
+  filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(2deg) brightness(1.15);
 }
 .hero-tagline {
   font-size: 0.72rem; letter-spacing: 0.32em;
-  color: rgba(255,255,255,0.45); font-weight: 300;
+  color: rgba(255,255,255,0.6); font-weight: 300;
   font-family: 'DM Sans', sans-serif;
-  margin-bottom: 26px;
+  margin-bottom: 18px;
 }
-
-.hero-text { padding: 0 0 80px; max-width: 680px; }
+.hero-text { max-width: 640px; }
 .hero-script {
   font-family: 'Great Vibes', cursive;
   font-size: 1.6rem; color: rgba(196,168,130,0.9);
-  margin-bottom: 18px; display: block;
+  margin-bottom: 14px; display: block;
 }
 .hero-h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 5.5vw, 4.8rem);
-  font-weight: 400; color: #F7F3EE;
-  line-height: 1.06; margin-bottom: 20px;
+  font-size: clamp(2.6rem, 4.2vw, 4rem);
+  font-weight: 500; color: #fff;
+  line-height: 1.08; margin-bottom: 14px;
   letter-spacing: -0.01em;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
 }
-.hero-h1 em { font-style: italic; color: rgba(168,197,176,0.95); }
+.hero-h1 em { font-style: italic; color: rgba(168,197,176,1); }
 .hero-sub {
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.05rem; font-weight: 300;
-  color: rgba(247,243,238,0.68);
-  line-height: 1.7; margin: 0 auto 40px;
-  max-width: 440px;
+  font-size: 1rem; font-weight: 300;
+  color: rgba(247,243,238,0.88);
+  line-height: 1.7; margin: 0 auto 28px;
+  max-width: 420px;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.35);
 }
 .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .hero-mobile-logo { display: none; }
