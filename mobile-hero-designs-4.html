@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>עיצובי הירו — גרסה 4 — אוריינטלי + אנימציה</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080705;font-family:'DM Sans',sans-serif;padding:50px 20px;display:flex;flex-direction:column;align-items:center;gap:64px}
+.page-title{color:rgba(255,255,255,0.3);font-size:0.72rem;letter-spacing:0.22em;text-align:center;margin-bottom:6px}
+.label{color:rgba(255,255,255,0.28);font-size:0.66rem;letter-spacing:0.16em;text-align:center;margin-bottom:10px}
+.phone{width:360px;height:700px;border-radius:36px;overflow:hidden;position:relative;box-shadow:0 40px 100px rgba(0,0,0,0.8)}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+
+/* shared buttons */
+.cta-row{position:absolute;bottom:48px;left:28px;right:28px;display:flex;gap:10px}
+.btn-p{flex:1;background:rgba(196,168,130,0.9);color:#0a0806;padding:14px;border-radius:8px;font-size:0.84rem;font-weight:500;text-align:center}
+.btn-s{flex:1;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.7);padding:14px;border-radius:8px;font-size:0.84rem;text-align:center}
+.logo{filter:brightness(0) invert(1)}
+.tag{font-size:0.68rem;letter-spacing:0.3em;color:rgba(255,255,255,0.45);font-weight:300}
+
+/* ─── ANIMATIONS ──────────────────────────── */
+@keyframes spin-slow { to { transform: rotate(360deg) } }
+@keyframes spin-rev  { to { transform: rotate(-360deg) } }
+@keyframes breathe   { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.07);opacity:0.8} }
+@keyframes pulse-ring{ 0%,100%{transform:scale(1);opacity:0.6} 50%{transform:scale(1.04);opacity:1} }
+@keyframes float-up  { 0%{opacity:0;transform:translateY(8px)} 30%{opacity:1} 100%{opacity:0;transform:translateY(-60px)} }
+@keyframes fade-in-up{ from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+@keyframes draw-line { from{stroke-dashoffset:600} to{stroke-dashoffset:0} }
+@keyframes shimmer   { 0%,100%{opacity:0.35} 50%{opacity:0.7} }
+@keyframes rotate-opp{ to{transform:rotate(-360deg)} }
+
+/* ══════════════════════════════════════════
+   V1 — MANDALA RINGS, BRIGHT IMAGE
+═══════════════════════════════════════════ */
+#v1 .bg{opacity:0.85}
+#v1 .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.22) 55%,rgba(0,0,0,0.6) 100%)}
+#v1 .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+/* mandala */
+#v1 .mandala{position:relative;width:220px;height:220px;margin-bottom:18px}
+#v1 .ring1{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(196,168,130,0.5);animation:spin-slow 28s linear infinite}
+#v1 .ring2{position:absolute;inset:12px;border-radius:50%;border:1px dashed rgba(196,168,130,0.25);animation:spin-rev 20s linear infinite}
+#v1 .ring3{position:absolute;inset:24px;border-radius:50%;border:1px solid rgba(196,168,130,0.18);animation:spin-slow 36s linear infinite}
+#v1 .ring-diamond{position:absolute;inset:0;animation:spin-slow 40s linear infinite}
+#v1 .ring-diamond::before,#v1 .ring-diamond::after{content:'';position:absolute;top:50%;left:50%;width:12px;height:12px;border:1px solid rgba(196,168,130,0.55);transform:translate(-50%,-50%) rotate(45deg)}
+#v1 .ring-diamond::before{margin-top:-109px}
+#v1 .ring-diamond::after{margin-top:97px}
+/* corner dots */
+#v1 .dots-ring{position:absolute;inset:0;animation:spin-slow 50s linear infinite}
+#v1 .dr{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(196,168,130,0.6);top:50%;left:50%;margin:-2px}
+#v1 .dr:nth-child(1){transform:translate(-50%,-50%) translateY(-108px)}
+#v1 .dr:nth-child(2){transform:translate(-50%,-50%) rotate(45deg) translateY(-108px)}
+#v1 .dr:nth-child(3){transform:translate(-50%,-50%) rotate(90deg) translateY(-108px)}
+#v1 .dr:nth-child(4){transform:translate(-50%,-50%) rotate(135deg) translateY(-108px)}
+#v1 .dr:nth-child(5){transform:translate(-50%,-50%) rotate(180deg) translateY(-108px)}
+#v1 .dr:nth-child(6){transform:translate(-50%,-50%) rotate(225deg) translateY(-108px)}
+#v1 .dr:nth-child(7){transform:translate(-50%,-50%) rotate(270deg) translateY(-108px)}
+#v1 .dr:nth-child(8){transform:translate(-50%,-50%) rotate(315deg) translateY(-108px)}
+#v1 .logo{position:absolute;inset:0;margin:auto;height:52px;width:auto;display:block;top:50%;left:50%;transform:translate(-50%,-50%)}
+#v1 .tag{margin-top:4px;animation:fade-in-up 1.2s ease both 0.4s}
+#v1 .vline{width:1px;height:40px;background:linear-gradient(to bottom,rgba(196,168,130,0.5),transparent);margin:18px auto 0}
+
+/* ══════════════════════════════════════════
+   V2 — LOTUS PETALS SVG, BRIGHT
+═══════════════════════════════════════════ */
+#v2 .bg{opacity:0.82}
+#v2 .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.18) 50%,rgba(0,0,0,0.58) 100%)}
+#v2 .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px}
+#v2 .lotus-wrap{position:relative;width:200px;height:200px;margin-bottom:16px}
+#v2 .lotus-svg{position:absolute;inset:0;animation:breathe 5s ease-in-out infinite}
+#v2 .logo{position:absolute;inset:0;margin:auto;height:48px;width:auto;top:50%;left:50%;transform:translate(-50%,-50%)}
+#v2 .tag{animation:fade-in-up 1s ease both 0.5s}
+
+/* ══════════════════════════════════════════
+   V3 — GEOMETRIC STAR, GOLD, BRIGHT
+═══════════════════════════════════════════ */
+#v3 .bg{opacity:0.88}
+#v3 .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 45%,rgba(0,0,0,0.55) 100%)}
+#v3 .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#v3 .star-wrap{position:relative;width:210px;height:210px;margin-bottom:18px}
+#v3 .star-svg{position:absolute;inset:0}
+#v3 .star-outer{animation:spin-slow 60s linear infinite;transform-origin:center}
+#v3 .star-inner{animation:spin-rev 45s linear infinite;transform-origin:center}
+#v3 .logo{position:absolute;inset:0;margin:auto;height:52px;width:auto;top:50%;left:50%;transform:translate(-50%,-50%)}
+#v3 .tag{animation:fade-in-up 1s ease both 0.5s}
+
+/* ══════════════════════════════════════════
+   V4 — FLOATING PARTICLES + BRUSHSTROKE
+═══════════════════════════════════════════ */
+#v4 .bg{opacity:0.78}
+#v4 .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.12) 0%,rgba(0,0,0,0.22) 50%,rgba(0,0,0,0.62) 100%)}
+#v4 .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 28px}
+#v4 .logo{height:60px;margin-bottom:20px;animation:fade-in-up 0.9s ease both}
+/* brushstroke SVG below logo */
+#v4 .brush{width:180px;margin-bottom:18px;opacity:0.6}
+#v4 .brush-path{stroke-dasharray:600;stroke-dashoffset:0;animation:draw-line 2.2s ease both 0.3s}
+#v4 .tag{animation:fade-in-up 1s ease both 0.8s}
+/* particles */
+#v4 .particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+#v4 .p{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(196,168,130,0.7);animation:float-up 6s ease-in-out infinite}
+#v4 .p:nth-child(1){left:20%;bottom:30%;animation-delay:0s;animation-duration:5s}
+#v4 .p:nth-child(2){left:35%;bottom:20%;animation-delay:1.2s;animation-duration:7s}
+#v4 .p:nth-child(3){left:55%;bottom:25%;animation-delay:2.4s;animation-duration:6s}
+#v4 .p:nth-child(4){left:70%;bottom:35%;animation-delay:0.8s;animation-duration:8s}
+#v4 .p:nth-child(5){left:80%;bottom:15%;animation-delay:3s;animation-duration:5.5s}
+#v4 .p:nth-child(6){left:10%;bottom:40%;animation-delay:1.8s;animation-duration:7s}
+#v4 .p:nth-child(7){left:45%;bottom:10%;animation-delay:4s;animation-duration:6.5s}
+#v4 .p:nth-child(8){left:88%;bottom:28%;animation-delay:2s;animation-duration:5s;width:2px;height:2px}
+
+/* ══════════════════════════════════════════
+   V5 — CONCENTRIC SQUARES + GLOW
+═══════════════════════════════════════════ */
+#v5 .bg{opacity:0.80}
+#v5 .overlay{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 42%,rgba(0,0,0,0) 0%,rgba(0,0,0,0.55) 100%)}
+#v5 .glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(196,168,130,0.18) 0%,transparent 70%);animation:breathe 4s ease-in-out infinite}
+#v5 .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#v5 .squares{position:relative;width:200px;height:200px;margin-bottom:16px}
+#v5 .sq{position:absolute;inset:0;margin:auto;border:1px solid rgba(196,168,130,0.28)}
+#v5 .sq1{width:180px;height:180px;animation:spin-slow 40s linear infinite}
+#v5 .sq2{width:148px;height:148px;animation:spin-rev 30s linear infinite}
+#v5 .sq3{width:118px;height:118px;animation:spin-slow 20s linear infinite;border-color:rgba(196,168,130,0.4)}
+#v5 .logo{position:absolute;inset:0;margin:auto;height:50px;width:auto;top:50%;left:50%;transform:translate(-50%,-50%)}
+#v5 .tag{animation:fade-in-up 1.1s ease both 0.4s}
+
+/* ══════════════════════════════════════════
+   V6 — HAMSA / PALM ORNAMENT
+═══════════════════════════════════════════ */
+#v6 .bg{opacity:0.84}
+#v6 .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.18) 48%,rgba(0,0,0,0.6) 100%)}
+#v6 .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+#v6 .ornament{position:relative;width:190px;height:190px;margin-bottom:16px}
+#v6 .orn-svg{position:absolute;inset:0;animation:pulse-ring 5s ease-in-out infinite}
+#v6 .logo{position:absolute;inset:0;margin:auto;height:50px;width:auto;top:50%;left:50%;transform:translate(-50%,-50%)}
+#v6 .tag{animation:fade-in-up 1s ease both 0.5s}
+#v6 .tag-dots{display:flex;justify-content:center;gap:10px;margin-top:10px}
+#v6 .td{width:3px;height:3px;border-radius:50%;background:rgba(196,168,130,0.5);animation:shimmer 2s ease-in-out infinite}
+#v6 .td:nth-child(2){animation-delay:0.3s}
+#v6 .td:nth-child(3){animation-delay:0.6s}
+#v6 .td:nth-child(4){animation-delay:0.9s}
+#v6 .td:nth-child(5){animation-delay:1.2s}
+
+/* ══════════════════════════════════════════
+   V7 — DOUBLE RING + RAYS
+═══════════════════════════════════════════ */
+#v7 .bg{opacity:0.82}
+#v7 .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.15) 48%,rgba(0,0,0,0.58) 100%)}
+#v7 .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#v7 .rays{position:relative;width:220px;height:220px;margin-bottom:18px}
+#v7 .rays-svg{position:absolute;inset:0;animation:spin-slow 80s linear infinite;opacity:0.3}
+#v7 .outer-ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(196,168,130,0.4);animation:pulse-ring 6s ease-in-out infinite}
+#v7 .inner-ring{position:absolute;inset:18px;border-radius:50%;border:1px dashed rgba(196,168,130,0.22);animation:spin-rev 35s linear infinite}
+#v7 .logo{position:absolute;inset:0;margin:auto;height:54px;width:auto;top:50%;left:50%;transform:translate(-50%,-50%)}
+#v7 .tag{animation:fade-in-up 1.1s ease both 0.4s}
+#v7 .underline{width:80px;height:1px;background:linear-gradient(to right,transparent,rgba(196,168,130,0.55),transparent);margin:12px auto 0}
+</style>
+</head>
+<body>
+
+<p class="page-title">עיצובי הירו — אוריינטלי + אנימציה</p>
+
+<!-- V1 MANDALA -->
+<div>
+<p class="label">1 — מנדלה מסתובבת</p>
+<div class="phone" id="v1">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=90" alt=""/>
+  <div class="overlay"></div>
+  <div class="c">
+    <div class="mandala">
+      <div class="ring1"></div>
+      <div class="ring2"></div>
+      <div class="ring3"></div>
+      <div class="ring-diamond"></div>
+      <div class="dots-ring">
+        <div class="dr"></div><div class="dr"></div><div class="dr"></div><div class="dr"></div>
+        <div class="dr"></div><div class="dr"></div><div class="dr"></div><div class="dr"></div>
+      </div>
+      <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    </div>
+    <p class="tag">יוגה · נשימה · תרבות · סלעית</p>
+    <div class="vline"></div>
+  </div>
+  <div class="cta-row">
+    <div class="btn-p">לשיעורי יוגה</div>
+    <div class="btn-s">אירועים קרובים</div>
+  </div>
+</div>
+</div>
+
+<!-- V2 LOTUS -->
+<div>
+<p class="label">2 — פרח לוטוס, נושם לאט</p>
+<div class="phone" id="v2">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=90" alt=""/>
+  <div class="overlay"></div>
+  <div class="c">
+    <div class="lotus-wrap">
+      <svg class="lotus-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- outer petals -->
+        <ellipse cx="100" cy="100" rx="18" ry="55" fill="rgba(196,168,130,0.12)" stroke="rgba(196,168,130,0.4)" stroke-width="0.8" transform="rotate(0 100 100)"/>
+        <ellipse cx="100" cy="100" rx="18" ry="55" fill="rgba(196,168,130,0.12)" stroke="rgba(196,168,130,0.4)" stroke-width="0.8" transform="rotate(45 100 100)"/>
+        <ellipse cx="100" cy="100" rx="18" ry="55" fill="rgba(196,168,130,0.12)" stroke="rgba(196,168,130,0.4)" stroke-width="0.8" transform="rotate(90 100 100)"/>
+        <ellipse cx="100" cy="100" rx="18" ry="55" fill="rgba(196,168,130,0.12)" stroke="rgba(196,168,130,0.4)" stroke-width="0.8" transform="rotate(135 100 100)"/>
+        <!-- inner petals -->
+        <ellipse cx="100" cy="100" rx="11" ry="36" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.45)" stroke-width="0.8" transform="rotate(22.5 100 100)"/>
+        <ellipse cx="100" cy="100" rx="11" ry="36" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.45)" stroke-width="0.8" transform="rotate(67.5 100 100)"/>
+        <ellipse cx="100" cy="100" rx="11" ry="36" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.45)" stroke-width="0.8" transform="rotate(112.5 100 100)"/>
+        <ellipse cx="100" cy="100" rx="11" ry="36" fill="rgba(168,197,176,0.1)" stroke="rgba(168,197,176,0.45)" stroke-width="0.8" transform="rotate(157.5 100 100)"/>
+        <!-- center circle -->
+        <circle cx="100" cy="100" r="28" fill="rgba(0,0,0,0.25)" stroke="rgba(196,168,130,0.3)" stroke-width="0.8"/>
+      </svg>
+      <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    </div>
+    <p class="tag">יוגה · נשימה · תרבות · סלעית</p>
+  </div>
+  <div class="cta-row">
+    <div class="btn-p">לשיעורי יוגה</div>
+    <div class="btn-s">אירועים קרובים</div>
+  </div>
+</div>
+</div>
+
+<!-- V3 GEOMETRIC STAR -->
+<div>
+<p class="label">3 — כוכב גיאומטרי מסתובב</p>
+<div class="phone" id="v3">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=90" alt=""/>
+  <div class="overlay"></div>
+  <div class="c">
+    <div class="star-wrap">
+      <svg class="star-svg" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- outer rotating star of david style -->
+        <g class="star-outer">
+          <polygon points="105,10 125,75 190,75 138,115 158,180 105,140 52,180 72,115 20,75 85,75" fill="none" stroke="rgba(196,168,130,0.3)" stroke-width="0.8"/>
+          <circle cx="105" cy="105" r="98" fill="none" stroke="rgba(196,168,130,0.2)" stroke-width="0.6" stroke-dasharray="4 6"/>
+        </g>
+        <!-- inner rotating -->
+        <g class="star-inner">
+          <polygon points="105,40 118,86 165,86 128,113 141,159 105,132 69,159 82,113 45,86 92,86" fill="none" stroke="rgba(168,197,176,0.35)" stroke-width="0.8"/>
+        </g>
+        <!-- center -->
+        <circle cx="105" cy="105" r="42" fill="rgba(0,0,0,0.28)" stroke="rgba(196,168,130,0.35)" stroke-width="0.8"/>
+        <circle cx="105" cy="105" r="32" fill="none" stroke="rgba(196,168,130,0.15)" stroke-width="0.6"/>
+      </svg>
+      <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    </div>
+    <p class="tag">יוגה · נשימה · תרבות · סלעית</p>
+  </div>
+  <div class="cta-row">
+    <div class="btn-p">לשיעורי יוגה</div>
+    <div class="btn-s">אירועים קרובים</div>
+  </div>
+</div>
+</div>
+
+<!-- V4 PARTICLES + BRUSHSTROKE -->
+<div>
+<p class="label">4 — חלקיקים צפים + קו מכחול</p>
+<div class="phone" id="v4">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=90" alt=""/>
+  <div class="overlay"></div>
+  <div class="particles">
+    <div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div>
+    <div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div>
+  </div>
+  <div class="c">
+    <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    <svg class="brush" viewBox="0 0 180 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="brush-path" d="M10 8 Q45 2 90 8 Q135 14 170 8" stroke="rgba(196,168,130,0.55)" stroke-width="1.5" stroke-linecap="round" fill="none" stroke-dasharray="600"/>
+    </svg>
+    <p class="tag">יוגה · נשימה · תרבות · סלעית</p>
+  </div>
+  <div class="cta-row">
+    <div class="btn-p">לשיעורי יוגה</div>
+    <div class="btn-s">אירועים קרובים</div>
+  </div>
+</div>
+</div>
+
+<!-- V5 CONCENTRIC SQUARES -->
+<div>
+<p class="label">5 — ריבועים קונצנטריים מסתובבים</p>
+<div class="phone" id="v5">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=90" alt=""/>
+  <div class="overlay"></div>
+  <div class="glow"></div>
+  <div class="c">
+    <div class="squares">
+      <div class="sq sq1"></div>
+      <div class="sq sq2"></div>
+      <div class="sq sq3"></div>
+      <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    </div>
+    <p class="tag">יוגה · נשימה · תרבות · סלעית</p>
+  </div>
+  <div class="cta-row">
+    <div class="btn-p">לשיעורי יוגה</div>
+    <div class="btn-s">אירועים קרובים</div>
+  </div>
+</div>
+</div>
+
+<!-- V6 ORNAMENT HAMSA-LIKE -->
+<div>
+<p class="label">6 — קישוט מזרחי, זוהר פנימי</p>
+<div class="phone" id="v6">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=90" alt=""/>
+  <div class="overlay"></div>
+  <div class="c">
+    <div class="ornament">
+      <svg class="orn-svg" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 8-pointed star -->
+        <path d="M95 10 L108 72 L165 58 L120 95 L165 132 L108 118 L95 180 L82 118 L25 132 L70 95 L25 58 L82 72 Z" fill="rgba(196,168,130,0.08)" stroke="rgba(196,168,130,0.38)" stroke-width="0.8"/>
+        <!-- inner rings -->
+        <circle cx="95" cy="95" r="55" fill="none" stroke="rgba(196,168,130,0.22)" stroke-width="0.7" stroke-dasharray="3 5"/>
+        <circle cx="95" cy="95" r="40" fill="rgba(0,0,0,0.2)" stroke="rgba(196,168,130,0.3)" stroke-width="0.8"/>
+        <circle cx="95" cy="95" r="28" fill="none" stroke="rgba(168,197,176,0.22)" stroke-width="0.6"/>
+        <!-- corner diamonds -->
+        <rect x="91" y="6" width="8" height="8" transform="rotate(45 95 10)" fill="rgba(196,168,130,0.5)" stroke="none"/>
+        <rect x="91" y="176" width="8" height="8" transform="rotate(45 95 180)" fill="rgba(196,168,130,0.5)" stroke="none"/>
+        <rect x="6" y="91" width="8" height="8" transform="rotate(45 10 95)" fill="rgba(196,168,130,0.5)" stroke="none"/>
+        <rect x="176" y="91" width="8" height="8" transform="rotate(45 180 95)" fill="rgba(196,168,130,0.5)" stroke="none"/>
+      </svg>
+      <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    </div>
+    <p class="tag">יוגה · נשימה · תרבות · סלעית</p>
+    <div class="tag-dots">
+      <div class="td"></div><div class="td"></div><div class="td"></div>
+      <div class="td"></div><div class="td"></div>
+    </div>
+  </div>
+  <div class="cta-row">
+    <div class="btn-p">לשיעורי יוגה</div>
+    <div class="btn-s">אירועים קרובים</div>
+  </div>
+</div>
+</div>
+
+<!-- V7 RAYS -->
+<div>
+<p class="label">7 — קרני אור + עיגול חיצוני דפקות</p>
+<div class="phone" id="v7">
+  <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=90" alt=""/>
+  <div class="overlay"></div>
+  <div class="c">
+    <div class="rays">
+      <svg class="rays-svg" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- rays from center -->
+        <line x1="110" y1="5"  x2="110" y2="215" stroke="rgba(196,168,130,0.15)" stroke-width="0.6"/>
+        <line x1="5"   y1="110" x2="215" y2="110" stroke="rgba(196,168,130,0.15)" stroke-width="0.6"/>
+        <line x1="33"  y1="33"  x2="187" y2="187" stroke="rgba(196,168,130,0.1)" stroke-width="0.6"/>
+        <line x1="187" y1="33"  x2="33"  y2="187" stroke="rgba(196,168,130,0.1)" stroke-width="0.6"/>
+        <line x1="110" y1="5"   x2="33"  y2="187" stroke="rgba(196,168,130,0.07)" stroke-width="0.5"/>
+        <line x1="110" y1="5"   x2="187" y2="187" stroke="rgba(196,168,130,0.07)" stroke-width="0.5"/>
+        <line x1="5"   y1="110" x2="187" y2="33"  stroke="rgba(196,168,130,0.07)" stroke-width="0.5"/>
+        <line x1="5"   y1="110" x2="187" y2="187" stroke="rgba(196,168,130,0.07)" stroke-width="0.5"/>
+      </svg>
+      <div class="outer-ring"></div>
+      <div class="inner-ring"></div>
+      <img class="logo" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+    </div>
+    <p class="tag">יוגה · נשימה · תרבות · סלעית</p>
+    <div class="underline"></div>
+  </div>
+  <div class="cta-row">
+    <div class="btn-p">לשיעורי יוגה</div>
+    <div class="btn-s">אירועים קרובים</div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
