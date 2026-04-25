@@ -59,10 +59,11 @@
 .pc-rate{font-family:'Cormorant Garamond',serif;font-size:3.8rem;color:var(--brown);font-weight:300;line-height:1;margin:16px 0 4px}
 .pc-rate small{font-size:1.1rem;font-family:'DM Sans',sans-serif;opacity:0.6;font-weight:300}
 .pc-period{font-size:0.8rem;color:var(--brown-xl);margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid rgba(196,168,130,0.18)}
-.pc-list{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:8px}
-.pc-list li{font-size:0.87rem;display:flex;align-items:center;gap:10px;padding:6px 0}
+.pc-list{list-style:none;margin-bottom:28px;display:flex;flex-wrap:wrap;gap:8px 10px}
+.pc-list li{font-size:0.82rem;display:flex;align-items:center;gap:7px;padding:7px 12px;background:rgba(196,168,130,0.08);border-radius:10px;border:1px solid rgba(196,168,130,0.15)}
 .pc-list li::before{display:none}
-.pc-icon-wrap{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:rgba(123,158,135,0.1);flex-shrink:0;font-size:1rem}
+.price-card.featured .pc-list li{background:rgba(247,243,238,0.07);border-color:rgba(247,243,238,0.12)}
+.pc-icon-wrap{display:flex;align-items:center;justify-content:center;width:22px;height:22px;flex-shrink:0;font-size:0.95rem}
 .pc-icon{display:inline}
 .pc-tag{display:inline-block;margin-top:10px;font-size:0.72rem;padding:5px 14px;border:1px solid rgba(196,168,130,0.4);border-radius:20px;color:var(--brown-l)}
 
@@ -138,9 +139,7 @@
   .pricing-grid{grid-template-columns:1fr}
   .pc-rate{font-size:2.8rem}
   .price-card{padding:24px 20px}
-  .pc-list{gap:4px;margin-bottom:16px}
-  .pc-list li{font-size:0.82rem;gap:8px}
-  .pc-icon-wrap{width:26px;height:26px;font-size:0.85rem}
+  .pc-list li{font-size:0.78rem;padding:6px 10px}
 
   .inquiry-form-wrap{padding:22px 18px}
   .img-mosaic{grid-template-columns:1fr 1fr}
@@ -152,25 +151,33 @@
 
 <nav id="nav">
   <a href="index.html" class="nav-logo">
-    <img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:40px;width:auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-    <span style="display:none">לי<span>לא</span></span>
+    <img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:38px;width:auto;filter:brightness(0) invert(1)" id="nav-logo-img" onerror="this.style.display='none';document.getElementById('nav-logo-txt').style.display='block'"/>
+    <span id="nav-logo-txt" style="display:none;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:white">לי<span style="color:rgba(168,197,176,0.9)">לא</span></span>
   </a>
-  <ul class="nav-links">
-    <li><a href="index.html">ראשי</a></li>
-    <li><a href="index.html#events-section">אירועים</a></li>
-    <li><a href="yoga.html">יוגה</a></li>
-    <li><a href="culture.html">תוכן ותרבות</a></li>
-    <li><a href="private-events.html" class="active">אירועים פרטיים</a></li>
+  <ul class="nav-links" style="--link-color:rgba(247,243,238,0.85)">
+    <li class="nav-has-submenu">
+      <a href="index.html" style="color:rgba(247,243,238,0.85)">ראשי <span class="nav-caret">▾</span></a>
+      <ul class="nav-submenu">
+        <li><a href="index.html#about-section">אודות</a></li>
+        <li><a href="index.html#services-section">השיעורים שלנו</a></li>
+        <li><a href="index.html#events-section">אירועים</a></li>
+        <li><a href="index.html#gallery-section">גלריה</a></li>
+        <li><a href="index.html#contact-section">צור קשר</a></li>
+      </ul>
+    </li>
+    <li><a href="yoga.html" style="color:rgba(247,243,238,0.85)">יוגה</a></li>
+    <li><a href="culture.html" style="color:rgba(247,243,238,0.85)">תוכן ותרבות</a></li>
+    <li><a href="private-events.html" class="active" style="color:rgba(247,243,238,0.85)">אירועים פרטיים</a></li>
   </ul>
-  <a href="#inquiry-form" class="nav-cta">פנייה לאירוע</a>
-  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <a href="#inquiry-form" class="nav-cta" style="border-color:rgba(247,243,238,0.4);color:rgba(247,243,238,0.9)">פנייה לאירוע</a>
+  <div class="nav-hamburger" id="hamburger"><span style="background:white"></span><span style="background:white"></span><span style="background:white"></span></div>
 </nav>
 <div class="nav-mobile-menu" id="mobile-menu">
   <a href="index.html">ראשי</a>
-  <a href="index.html#events-section">אירועים</a>
   <a href="yoga.html">יוגה</a>
   <a href="culture.html">תוכן ותרבות</a>
   <a href="private-events.html">אירועים פרטיים</a>
+  <a href="#inquiry-form">פנייה לאירוע</a>
 </div>
 
 <!-- ══════════════════════ HERO ══════════════════════ -->

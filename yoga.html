@@ -31,14 +31,41 @@
 .instructor-styles { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
 .instructor-styles span { padding:3px 10px; background:rgba(123,158,135,0.1); border-radius:12px; font-size:0.72rem; color:var(--sage); }
 
-.pricing-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
-.price-card { padding:24px 16px !important; }
-.price-num { font-size:2.4rem !important; }
-.price-unit { margin:4px 0 12px !important; font-size:0.76rem !important; }
-.price-features { margin-bottom:16px !important; }
-.price-features li { padding:4px 0 !important; font-size:0.82rem !important; }
+/* ── Yoga Pricing: horizontal cards ── */
+.pricing-grid { display:flex; flex-direction:column; gap:10px; }
+.price-card {
+  display:flex; align-items:center; gap:20px;
+  padding:20px 28px; border-radius:var(--radius);
+  border:1px solid rgba(196,168,130,0.18); background:var(--white);
+  transition:all 0.3s; position:relative; overflow:hidden;
+  border-right:3px solid rgba(196,168,130,0.3);
+}
+.price-card:hover { box-shadow:0 8px 32px rgba(61,53,48,0.08); transform:translateY(-2px); }
+.price-card.featured { background:var(--brown); border-right-color:var(--sage); }
+.ypc-badge {
+  width:46px; height:46px; border-radius:50%;
+  background:rgba(123,158,135,0.1);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif; font-size:0.95rem; font-weight:400;
+  color:var(--sage); flex-shrink:0; letter-spacing:0.04em;
+}
+.price-card.featured .ypc-badge { background:rgba(247,243,238,0.12); color:rgba(247,243,238,0.85); }
+.ypc-main { flex:1; min-width:0; }
+.ypc-name { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:400; color:var(--brown); margin-bottom:7px; }
+.price-card.featured .ypc-name { color:rgba(247,243,238,0.95); }
+.ypc-feats { display:flex; flex-wrap:wrap; gap:5px; }
+.ypc-feat { font-size:0.74rem; padding:3px 10px; background:rgba(196,168,130,0.1); border-radius:12px; color:var(--brown-l); }
+.price-card.featured .ypc-feat { background:rgba(247,243,238,0.1); color:rgba(247,243,238,0.75); }
+.ypc-price { display:flex; align-items:baseline; gap:3px; flex-shrink:0; margin:0 8px; }
+.ypc-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300; color:var(--brown); line-height:1; }
+.price-card.featured .ypc-num { color:rgba(247,243,238,0.95); }
+.ypc-sym { font-size:1.2rem; color:var(--brown-l); font-weight:300; }
+.price-card.featured .ypc-sym { color:rgba(247,243,238,0.6); }
+.ypc-per { font-size:0.7rem; color:var(--brown-xl); margin-right:2px; }
+.price-card.featured .ypc-per { color:rgba(247,243,238,0.55); }
 
 .sched-wrap { overflow-x:auto; border-radius:var(--radius); box-shadow:var(--shadow); }
+.sched-time-inline { display:none; }
 
 /* Schedule scroll hint */
 .sched-container { position:relative; }
@@ -77,14 +104,14 @@
   .style-meta { gap:6px; }
   .style-badge { font-size:0.64rem; padding:3px 7px; }
 
-  /* Pricing: compact 2-col */
-  .pricing-grid { grid-template-columns:1fr 1fr; gap:8px; }
-  .price-card { padding:16px 12px !important; }
-  .price-num { font-size:1.9rem !important; }
-  .price-unit { margin:2px 0 8px !important; font-size:0.72rem !important; }
-  .price-features { margin-bottom:10px !important; }
-  .price-features li { padding:3px 0 !important; font-size:0.76rem !important; }
-  .price-card .btn-outline { padding:8px 12px; font-size:0.76rem; }
+  /* Pricing: compact horizontal */
+  .price-card { padding:14px 16px; gap:12px; }
+  .ypc-badge { width:36px; height:36px; font-size:0.78rem; }
+  .ypc-name { font-size:1rem; margin-bottom:5px; }
+  .ypc-feat { font-size:0.68rem; padding:2px 8px; }
+  .ypc-num { font-size:2rem; }
+  .ypc-sym { font-size:1rem; }
+  .price-card .btn-outline { padding:7px 14px; font-size:0.74rem; white-space:nowrap; }
 
   /* Instructors */
   .instructor-card { padding:16px; gap:12px; }
@@ -92,13 +119,14 @@
   .instructor-name { font-size:1rem; }
   .instructor-bio { font-size:0.78rem; line-height:1.55; }
 
-  /* Schedule: compact */
+  /* Schedule: compact + hide time column */
   .sched-wrap { font-size:0.76rem; }
   .schedule-table th, .schedule-table td { padding:8px 7px; white-space:nowrap; }
   .schedule-chip { font-size:0.7rem; padding:2px 7px; }
+  .sched-time-col { display:none; }
+  .sched-time-inline { display:block; font-size:0.67rem; color:var(--brown-xl); margin-top:2px; font-weight:400; }
 }
 @media(max-width:480px){
-  .pricing-grid { grid-template-columns:1fr; }
   .style-badge { font-size:0.66rem; }
 }
 </style>
@@ -106,20 +134,34 @@
 <body>
 
 <nav id="nav">
-  <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:40px;width:auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span style="display:none">לי<span>לא</span></span></a>
-  <ul class="nav-links">
-    <li><a href="index.html">ראשי</a></li>
-    <li><a href="index.html#events-section">אירועים</a></li>
-    <li><a href="yoga.html" class="active">יוגה</a></li>
-    <li><a href="culture.html">תוכן ותרבות</a></li>
-    <li><a href="private-events.html">אירועים פרטיים</a></li>
+  <a href="index.html" class="nav-logo">
+    <img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:38px;width:auto;filter:brightness(0) invert(1)" id="nav-logo-img" onerror="this.style.display='none';document.getElementById('nav-logo-txt').style.display='block'"/>
+    <span id="nav-logo-txt" style="display:none;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:white">לי<span style="color:rgba(168,197,176,0.9)">לא</span></span>
+  </a>
+  <ul class="nav-links" style="--link-color:rgba(247,243,238,0.85)">
+    <li class="nav-has-submenu">
+      <a href="index.html" style="color:rgba(247,243,238,0.85)">ראשי <span class="nav-caret">▾</span></a>
+      <ul class="nav-submenu">
+        <li><a href="index.html#about-section">אודות</a></li>
+        <li><a href="index.html#services-section">השיעורים שלנו</a></li>
+        <li><a href="index.html#events-section">אירועים</a></li>
+        <li><a href="index.html#gallery-section">גלריה</a></li>
+        <li><a href="index.html#contact-section">צור קשר</a></li>
+      </ul>
+    </li>
+    <li><a href="yoga.html" class="active" style="color:rgba(247,243,238,0.85)">יוגה</a></li>
+    <li><a href="culture.html" style="color:rgba(247,243,238,0.85)">תוכן ותרבות</a></li>
+    <li><a href="private-events.html" style="color:rgba(247,243,238,0.85)">אירועים פרטיים</a></li>
   </ul>
-  <a href="index.html#contact-section" class="nav-cta">צור קשר</a>
-  <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  <a href="#contact-section" class="nav-cta" style="border-color:rgba(247,243,238,0.4);color:rgba(247,243,238,0.9)">צור קשר</a>
+  <div class="nav-hamburger" id="hamburger"><span style="background:white"></span><span style="background:white"></span><span style="background:white"></span></div>
 </nav>
 <div class="nav-mobile-menu" id="mobile-menu">
-  <a href="index.html">ראשי</a><a href="yoga.html">יוגה</a><a href="culture.html">תוכן ותרבות</a>
-  <a href="private-events.html">אירועים פרטיים</a><a href="index.html#contact-section">צור קשר</a>
+  <a href="index.html">ראשי</a>
+  <a href="yoga.html">יוגה</a>
+  <a href="culture.html">תוכן ותרבות</a>
+  <a href="private-events.html">אירועים פרטיים</a>
+  <a href="#contact-section">צור קשר</a>
 </div>
 
 <!-- PAGE HERO -->
@@ -364,34 +406,49 @@
     </div>
     <div class="pricing-grid">
       <div class="price-card reveal">
-        <div class="price-num">75</div>
-        <div class="price-unit">₪ לשיעור</div>
-        <ul class="price-features"><li>שיעור אחד</li><li>כל סגנון</li><li>ללא הגבלת זמן</li></ul>
-        <button class="btn-outline" style="width:100%" onclick="openTicketModal('single-class','שיעור בודד',75)">בחר</button>
+        <div class="ypc-badge">×1</div>
+        <div class="ypc-main">
+          <div class="ypc-name">שיעור בודד</div>
+          <div class="ypc-feats"><span class="ypc-feat">כל סגנון</span><span class="ypc-feat">ללא הגבלת זמן</span></div>
+        </div>
+        <div class="ypc-price"><span class="ypc-sym">₪</span><span class="ypc-num">75</span><span class="ypc-per">לשיעור</span></div>
+        <button class="btn-outline" onclick="openTicketModal('single-class','שיעור בודד',75)">בחר</button>
       </div>
       <div class="price-card reveal d1">
-        <div class="price-num">270</div>
-        <div class="price-unit">₪ ל-5 שיעורים</div>
-        <ul class="price-features"><li>5 שיעורים</li><li>₪54 לשיעור</li><li>תוקף 3 חודשים</li></ul>
-        <button class="btn-outline" style="width:100%" onclick="openTicketModal('5-pack','חמישיית שיעורים',270)">בחר</button>
+        <div class="ypc-badge">×5</div>
+        <div class="ypc-main">
+          <div class="ypc-name">חמישיית שיעורים</div>
+          <div class="ypc-feats"><span class="ypc-feat">5 שיעורים</span><span class="ypc-feat">₪54 לשיעור</span><span class="ypc-feat">תוקף 3 חודשים</span></div>
+        </div>
+        <div class="ypc-price"><span class="ypc-sym">₪</span><span class="ypc-num">270</span><span class="ypc-per">לחמישיה</span></div>
+        <button class="btn-outline" onclick="openTicketModal('5-pack','חמישיית שיעורים',270)">בחר</button>
       </div>
       <div class="price-card featured reveal d2">
-        <div class="price-num" style="color:white">400</div>
-        <div class="price-unit">₪ ל-9 שיעורים</div>
-        <ul class="price-features"><li>9 שיעורים</li><li>₪44 לשיעור</li><li>תוקף 3 חודשים</li></ul>
-        <button class="btn-outline" style="width:100%" onclick="openTicketModal('9-pack','תשיית שיעורים',400)">בחר</button>
+        <div class="ypc-badge">×9</div>
+        <div class="ypc-main">
+          <div class="ypc-name">תשיית שיעורים</div>
+          <div class="ypc-feats"><span class="ypc-feat">9 שיעורים</span><span class="ypc-feat">₪44 לשיעור</span><span class="ypc-feat">תוקף 3 חודשים</span></div>
+        </div>
+        <div class="ypc-price"><span class="ypc-sym">₪</span><span class="ypc-num">400</span><span class="ypc-per">לתשיה</span></div>
+        <button class="btn-outline" style="border-color:rgba(247,243,238,0.4);color:rgba(247,243,238,0.9)" onclick="openTicketModal('9-pack','תשיית שיעורים',400)">בחר</button>
       </div>
       <div class="price-card reveal d3">
-        <div class="price-num">495</div>
-        <div class="price-unit">₪ לחודש</div>
-        <ul class="price-features"><li>שיעורים ללא הגבלה</li><li>חודש קלנדרי</li><li>הכי משתלם ליותר מ-10</li></ul>
-        <button class="btn-outline" style="width:100%" onclick="openTicketModal('monthly','מנוי חודשי',495)">בחר</button>
+        <div class="ypc-badge">∞</div>
+        <div class="ypc-main">
+          <div class="ypc-name">מנוי חודשי</div>
+          <div class="ypc-feats"><span class="ypc-feat">ללא הגבלה</span><span class="ypc-feat">חודש קלנדרי</span><span class="ypc-feat">הכי משתלם ל-10+</span></div>
+        </div>
+        <div class="ypc-price"><span class="ypc-sym">₪</span><span class="ypc-num">495</span><span class="ypc-per">לחודש</span></div>
+        <button class="btn-outline" onclick="openTicketModal('monthly','מנוי חודשי',495)">בחר</button>
       </div>
       <div class="price-card reveal d4">
-        <div class="price-num">650</div>
-        <div class="price-unit">₪ ל-10 שיעורים</div>
-        <ul class="price-features"><li>10 שיעורים</li><li>₪65 לשיעור</li><li>תוקף 4 חודשים</li></ul>
-        <button class="btn-outline" style="width:100%" onclick="openTicketModal('10-pack','כרטיסיית 10 שיעורים',650)">בחר</button>
+        <div class="ypc-badge">×10</div>
+        <div class="ypc-main">
+          <div class="ypc-name">כרטיסיית 10 שיעורים</div>
+          <div class="ypc-feats"><span class="ypc-feat">10 שיעורים</span><span class="ypc-feat">₪65 לשיעור</span><span class="ypc-feat">תוקף 4 חודשים</span></div>
+        </div>
+        <div class="ypc-price"><span class="ypc-sym">₪</span><span class="ypc-num">650</span><span class="ypc-per">לעשיריה</span></div>
+        <button class="btn-outline" onclick="openTicketModal('10-pack','כרטיסיית 10 שיעורים',650)">בחר</button>
       </div>
     </div>
     <p style="text-align:center;font-size:0.82rem;color:var(--brown-xl);margin-top:32px">💚 שיעור ראשון חינם לתלמידים חדשים | ↙ לרכישה ולפרטים: 052-3511064</p>
@@ -409,42 +466,42 @@
       <table class="schedule-table">
         <thead>
           <tr>
-            <th>יום</th><th>שעה</th><th>סגנון</th><th>מדריך/ת</th><th>רמה</th><th>הרשמה</th>
+            <th>יום</th><th class="sched-time-col">שעה</th><th>סגנון</th><th>מדריך/ת</th><th>רמה</th><th>הרשמה</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>ראשון</strong></td><td>08:15–09:30</td>
+            <td><strong>ראשון</strong><span class="sched-time-inline">08:15–09:30</span></td><td class="sched-time-col">08:15–09:30</td>
             <td><span class="schedule-chip" style="background:rgba(123,158,135,0.12);color:var(--sage)">האת'ה יוגה</span></td>
             <td>גל אביב</td><td>כל הרמות</td>
             <td><button class="btn-outline" style="padding:6px 16px;font-size:0.78rem" onclick="openTicketModal('hatha-weekly','האת\'ה יוגה',75)">הרשמה</button></td>
           </tr>
           <tr>
-            <td><strong>ראשון</strong></td><td>20:00–21:15</td>
+            <td><strong>ראשון</strong><span class="sched-time-inline">20:00–21:15</span></td><td class="sched-time-col">20:00–21:15</td>
             <td><span class="schedule-chip" style="background:rgba(196,168,130,0.15);color:var(--tan)">אשטנגה ויניאסה</span></td>
             <td>בר פרץ</td><td>ביניים+</td>
             <td><button class="btn-outline" style="padding:6px 16px;font-size:0.78rem" onclick="openTicketModal('ashtanga-sun-eve','אשטנגה ויניאסה ערב',75)">הרשמה</button></td>
           </tr>
           <tr>
-            <td><strong>שני</strong></td><td>19:30–20:45</td>
+            <td><strong>שני</strong><span class="sched-time-inline">19:30–20:45</span></td><td class="sched-time-col">19:30–20:45</td>
             <td><span class="schedule-chip" style="background:rgba(123,158,135,0.12);color:var(--sage)">יין יוגה</span></td>
             <td>גל אביב</td><td>כל הרמות</td>
             <td><button class="btn-outline" style="padding:6px 16px;font-size:0.78rem" onclick="openTicketModal('yin-weekly','יין יוגה',75)">הרשמה</button></td>
           </tr>
           <tr>
-            <td><strong>שלישי</strong></td><td>08:15–09:30</td>
+            <td><strong>שלישי</strong><span class="sched-time-inline">08:15–09:30</span></td><td class="sched-time-col">08:15–09:30</td>
             <td><span class="schedule-chip" style="background:rgba(196,168,130,0.15);color:var(--tan)">אשטנגה ויניאסה</span></td>
             <td>שי נבנהויז</td><td>ביניים+</td>
             <td><button class="btn-outline" style="padding:6px 16px;font-size:0.78rem" onclick="openTicketModal('ashtanga-tue','אשטנגה ויניאסה',75)">הרשמה</button></td>
           </tr>
           <tr>
-            <td><strong>רביעי</strong></td><td>08:15–09:30</td>
+            <td><strong>רביעי</strong><span class="sched-time-inline">08:15–09:30</span></td><td class="sched-time-col">08:15–09:30</td>
             <td><span class="schedule-chip" style="background:rgba(123,158,135,0.12);color:var(--sage)">קונדליני יוגה</span></td>
             <td>גל אביב</td><td>כל הרמות</td>
             <td><button class="btn-outline" style="padding:6px 16px;font-size:0.78rem" onclick="openTicketModal('kundalini-weekly','קונדליני יוגה',75)">הרשמה</button></td>
           </tr>
           <tr>
-            <td><strong>שישי</strong></td><td>08:15–09:30</td>
+            <td><strong>שישי</strong><span class="sched-time-inline">08:15–09:30</span></td><td class="sched-time-col">08:15–09:30</td>
             <td><span class="schedule-chip" style="background:rgba(212,184,150,0.2);color:var(--brown-l)">האת'ה / קלה ויניאסה</span></td>
             <td>גל אביב / ניצן זיסקינד</td><td>כל הרמות</td>
             <td><button class="btn-outline" style="padding:6px 16px;font-size:0.78rem" onclick="openTicketModal('hatha-weekly','האת\'ה / קלה יוגה',75)">הרשמה</button></td>
@@ -469,7 +526,7 @@
   <p class="quote-author reveal d2">— הבהגווד גיטה</p>
 </div>
 
-<footer>
+<footer id="contact-section">
   <div class="footer-grid">
     <div>
       <a href="index.html" class="footer-logo-wrap"><img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" style="height:36px;width:auto;filter:brightness(0) sepia(1) saturate(0.4) brightness(0.55)" onerror="this.style.display='none'"/></a>

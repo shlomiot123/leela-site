@@ -170,7 +170,7 @@ function renderDayPopup(dateStr, events, triggerEl) {
 
   popup.innerHTML = `
     <div class="cal-popup-header">
-      <span class="cal-popup-date">אירועים ב-${dateLabel}</span>
+      <span class="cal-popup-date">${dateLabel}</span>
       <button class="cal-popup-close" aria-label="סגור">✕</button>
     </div>
     <div class="cal-popup-list">${eventsHTML}</div>
