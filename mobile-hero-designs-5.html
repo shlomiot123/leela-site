@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>עיצובי מנדלה — מובייל + דסקטופ</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060504;font-family:'DM Sans',sans-serif;padding:50px 20px;display:flex;flex-direction:column;align-items:center;gap:72px}
+h2{color:rgba(255,255,255,0.18);font-size:0.68rem;letter-spacing:0.28em;font-weight:400;text-align:center;margin-bottom:4px}
+.label{color:rgba(196,168,130,0.35);font-size:0.65rem;letter-spacing:0.16em;text-align:center;margin-bottom:12px}
+
+/* ── ANIMATIONS ─────────────────────────────── */
+@keyframes spin-slow { to{transform:rotate(360deg)} }
+@keyframes spin-rev  { to{transform:rotate(-360deg)} }
+@keyframes breathe   { 0%,100%{opacity:0.55;transform:scale(1)} 50%{opacity:0.9;transform:scale(1.04)} }
+@keyframes pulse-glow{ 0%,100%{opacity:0.3} 50%{opacity:0.65} }
+@keyframes float-up  { 0%{opacity:0;transform:translateY(6px)} 25%{opacity:0.8} 100%{opacity:0;transform:translateY(-55px)} }
+@keyframes fade-in   { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* ════════════════════════════════════════════
+   MOBILE — refined V1
+════════════════════════════════════════════ */
+.phone{width:360px;height:700px;border-radius:36px;overflow:hidden;position:relative;box-shadow:0 40px 100px rgba(0,0,0,0.85)}
+.phone .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+.cta-row{position:absolute;bottom:46px;left:26px;right:26px;display:flex;gap:10px}
+.btn-p{flex:1;background:rgba(196,168,130,0.92);color:#0a0806;padding:14px;border-radius:8px;font-size:0.84rem;font-weight:500;text-align:center}
+.btn-s{flex:1;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.68);padding:14px;border-radius:8px;font-size:0.84rem;text-align:center}
+
+/* the shared mandala component */
+.mdl{position:relative;display:flex;align-items:center;justify-content:center}
+.mdl .r1{position:absolute;border-radius:50%;border:1px solid rgba(196,168,130,0.5);animation:spin-slow 28s linear infinite;inset:0}
+.mdl .r2{position:absolute;border-radius:50%;border:1px dashed rgba(196,168,130,0.22);animation:spin-rev 18s linear infinite}
+.mdl .r3{position:absolute;border-radius:50%;border:1px solid rgba(196,168,130,0.14);animation:spin-slow 40s linear infinite}
+.mdl .r4{position:absolute;border-radius:50%;border:1px solid rgba(168,197,176,0.18);animation:spin-rev 55s linear infinite}
+/* tick marks on outer ring */
+.mdl .ticks{position:absolute;inset:0;animation:spin-slow 28s linear infinite}
+.mdl .tick{position:absolute;top:0;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.6);transform-origin:50% 100%}
+/* inner glow */
+.mdl .glow{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(196,168,130,0.12) 0%,transparent 70%);animation:pulse-glow 5s ease-in-out infinite}
+
+/* ════════════════════════════════════════════
+   DESKTOP MOCKUPS
+════════════════════════════════════════════ */
+.desk{width:820px;height:480px;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.85)}
+.desk .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+
+/* shared desktop text styles */
+.desk-h1{font-family:'Cormorant Garamond',serif;font-weight:300;color:#F7F3EE;line-height:1.06}
+.desk-h1 em{font-style:italic;color:rgba(168,197,176,0.9)}
+.desk-sub{font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(247,243,238,0.6);line-height:1.7}
+.desk-script{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(196,168,130,0.7)}
+.desk-btn-p{background:rgba(196,168,130,0.9);color:#0a0806;padding:12px 26px;border-radius:8px;font-size:0.85rem;font-weight:500;cursor:pointer;white-space:nowrap}
+.desk-btn-s{border:1px solid rgba(247,243,238,0.3);color:rgba(247,243,238,0.78);padding:12px 26px;border-radius:8px;font-size:0.85rem;cursor:pointer;white-space:nowrap}
+
+/* ─── DESK A: Mandala centered behind text ── */
+#da .bg{opacity:0.55}
+#da .ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,8,6,0) 0%,rgba(10,8,6,0.22) 38%,rgba(10,8,6,0.82) 62%,rgba(10,8,6,0.94) 100%)}
+/* large mandala positioned left-center */
+#da .mdl-wrap{position:absolute;top:50%;right:62%;transform:translate(50%,-50%)}
+#da .content{position:absolute;inset:0;display:flex;align-items:center;padding:0 72px}
+#da .text-block{margin-right:auto;max-width:440px;animation:fade-in 0.8s ease both}
+#da .desk-h1{font-size:3.4rem;margin-bottom:18px}
+#da .desk-sub{font-size:0.95rem;margin-bottom:30px;max-width:340px}
+#da .btns{display:flex;gap:14px}
+
+/* ─── DESK B: Full-center mandala hero ─────── */
+#db .bg{opacity:0.42}
+#db .ov{position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 50% 40%,transparent 20%,rgba(0,0,0,0.72) 100%)}
+#db .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0}
+#db .mdl-wrap{margin-bottom:24px}
+#db .desk-script{font-size:0.85rem;letter-spacing:0.16em;margin-bottom:10px}
+#db .desk-h1{font-size:2.6rem;margin-bottom:12px;line-height:1.1}
+#db .desk-sub{font-size:0.82rem;max-width:420px;margin-bottom:26px}
+#db .btns{display:flex;gap:12px;justify-content:center}
+
+/* ─── DESK C: Mandala bottom-right corner ──── */
+#dc .bg{opacity:0.55}
+#dc .ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,8,6,0) 0%,rgba(10,8,6,0.2) 35%,rgba(10,8,6,0.78) 60%,rgba(10,8,6,0.92) 100%)}
+#dc .content{position:absolute;inset:0;display:flex;align-items:center;padding:0 72px}
+#dc .text-block{margin-right:auto;max-width:420px}
+#dc .desk-h1{font-size:3.2rem;margin-bottom:16px}
+#dc .desk-sub{font-size:0.92rem;margin-bottom:26px;max-width:320px}
+#dc .btns{display:flex;gap:14px}
+/* corner mandala — bottom right */
+#dc .corner-mdl{position:absolute;bottom:-80px;left:-80px;opacity:0.4}
+#dc .corner-mdl .r1{animation:spin-slow 50s linear infinite}
+#dc .corner-mdl .r2{animation:spin-rev 35s linear infinite}
+#dc .corner-mdl .r3{animation:spin-slow 65s linear infinite}
+/* second corner top-right */
+#dc .corner-mdl2{position:absolute;top:-90px;right:-90px;opacity:0.22}
+#dc .corner-mdl2 .r1{animation:spin-rev 70s linear infinite}
+#dc .corner-mdl2 .r2{animation:spin-slow 45s linear infinite}
+#dc .corner-mdl2 .r3{animation:spin-rev 90s linear infinite}
+
+/* ─── DESK D: Mandala in nav area ───────────── */
+#dd .bg{opacity:0.52}
+#dd .ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,8,6,0) 0%,rgba(10,8,6,0.25) 40%,rgba(10,8,6,0.85) 65%,rgba(10,8,6,0.95) 100%)}
+/* nav bar */
+#dd .nav-bar{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid rgba(255,255,255,0.06)}
+#dd .nav-logo-wrap{position:relative;width:48px;height:48px;display:flex;align-items:center;justify-content:center}
+#dd .nav-logo-wrap .r1{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(196,168,130,0.4);animation:spin-slow 20s linear infinite}
+#dd .nav-logo-wrap .r2{position:absolute;inset:5px;border-radius:50%;border:1px dashed rgba(196,168,130,0.18);animation:spin-rev 14s linear infinite}
+#dd .nav-logo-img{height:26px;filter:brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(0deg) brightness(1.15)}
+#dd .nav-links{display:flex;gap:28px;list-style:none}
+#dd .nav-links a{color:rgba(255,255,255,0.72);font-size:0.82rem;letter-spacing:0.04em;text-decoration:none}
+#dd .nav-cta-btn{border:1px solid rgba(196,168,130,0.45);color:rgba(196,168,130,0.9);padding:7px 18px;border-radius:20px;font-size:0.78rem}
+/* hero text */
+#dd .content{position:absolute;inset:0;top:64px;display:flex;align-items:center;padding:0 72px}
+#dd .text-block{margin-right:auto;max-width:430px}
+#dd .desk-h1{font-size:3.2rem;margin-bottom:14px}
+#dd .desk-sub{font-size:0.9rem;margin-bottom:26px;max-width:320px}
+#dd .btns{display:flex;gap:14px}
+
+/* ─── DESK E: Mandala as huge watermark ─────── */
+#de .bg{opacity:0.58}
+#de .ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,8,6,0) 0%,rgba(10,8,6,0.18) 35%,rgba(10,8,6,0.8) 62%,rgba(10,8,6,0.94) 100%)}
+#de .bg-mdl{position:absolute;top:50%;right:46%;transform:translate(50%,-50%);opacity:0.12}
+#de .bg-mdl .r1{animation:spin-slow 120s linear infinite}
+#de .bg-mdl .r2{animation:spin-rev 90s linear infinite}
+#de .bg-mdl .r3{animation:spin-slow 150s linear infinite}
+#de .bg-mdl .r4{animation:spin-rev 200s linear infinite}
+#de .content{position:absolute;inset:0;display:flex;align-items:center;padding:0 72px}
+#de .text-block{margin-right:auto;max-width:440px}
+#de .mdl-small{margin-bottom:24px}
+#de .desk-h1{font-size:3.4rem;margin-bottom:16px}
+#de .desk-sub{font-size:0.93rem;margin-bottom:28px;max-width:340px}
+#de .btns{display:flex;gap:14px}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ MOBILE ══════════════ -->
+<div>
+  <h2>מובייל — V1 מעודכן</h2>
+  <p class="label">לוגו גדול + זהוב + מרוכז במנדלה</p>
+  <div class="phone">
+    <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=800&q=90" alt=""/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.2) 52%,rgba(0,0,0,0.62) 100%)"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+      <!-- mandala -->
+      <div class="mdl" style="width:240px;height:240px;margin-bottom:20px">
+        <div class="r1" style="inset:0"></div>
+        <div class="r2" style="inset:14px"></div>
+        <div class="r3" style="inset:28px"></div>
+        <div class="r4" style="inset:42px"></div>
+        <div class="glow" style="width:130px;height:130px"></div>
+        <!-- 12 tick marks -->
+        <div class="ticks">
+          <div class="tick" style="transform:rotate(0deg) translateX(-50%);transform-origin:0 120px;top:0;left:50%;margin-left:0"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(0deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(30deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(60deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(90deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(120deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(150deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(180deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(210deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(240deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(270deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(300deg) translate(-50%,-120px)"></div>
+          <div class="tick" style="position:absolute;top:50%;left:50%;width:1px;height:8px;background:rgba(196,168,130,0.55);transform:rotate(330deg) translate(-50%,-120px)"></div>
+        </div>
+        <img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא"
+          style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:70px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(2deg) brightness(1.1)"
+          onerror="this.style.display='none'"/>
+      </div>
+      <p style="font-size:0.66rem;letter-spacing:0.32em;color:rgba(255,255,255,0.42);font-weight:300">יוגה · נשימה · תרבות · סלעית</p>
+      <div style="width:1px;height:36px;background:linear-gradient(to bottom,rgba(196,168,130,0.45),transparent);margin:16px auto 0"></div>
+    </div>
+    <div class="cta-row">
+      <div class="btn-p">לשיעורי יוגה</div>
+      <div class="btn-s">אירועים קרובים</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ DESKTOP ══════════════ -->
+
+<!-- DESK A -->
+<div>
+  <h2>דסקטופ — אפשרות A</h2>
+  <p class="label">מנדלה מתחת לתמונה בצד שמאל, טקסט ימין</p>
+  <div class="desk" id="da">
+    <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=1400&q=85" alt=""/>
+    <div class="ov"></div>
+    <div class="mdl-wrap">
+      <div class="mdl" style="width:320px;height:320px">
+        <div class="r1" style="inset:0"></div>
+        <div class="r2" style="inset:18px"></div>
+        <div class="r3" style="inset:36px"></div>
+        <div class="r4" style="inset:54px"></div>
+        <div class="glow" style="width:160px;height:160px"></div>
+        <img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא"
+          style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:72px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(2deg) brightness(1.1)"
+          onerror="this.style.display='none'"/>
+      </div>
+    </div>
+    <div class="content">
+      <div class="text-block">
+        <p class="desk-script" style="font-size:1rem;margin-bottom:16px;letter-spacing:0.1em">יוגה · נשימה · תרבות · סלעית</p>
+        <h1 class="desk-h1" style="font-size:3.4rem;margin-bottom:18px">בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+        <p class="desk-sub" style="font-size:0.93rem;margin-bottom:30px;max-width:340px">תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד.</p>
+        <div class="btns">
+          <div class="desk-btn-p">לשיעורי יוגה</div>
+          <div class="desk-btn-s">אירועים קרובים</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DESK B -->
+<div>
+  <h2>דסקטופ — אפשרות B</h2>
+  <p class="label">מנדלה + לוגו במרכז, טקסט מתחת — מסך כניסה מלא</p>
+  <div class="desk" id="db">
+    <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=1400&q=85" alt=""/>
+    <div class="ov"></div>
+    <div class="center">
+      <div class="mdl-wrap">
+        <div class="mdl" style="width:180px;height:180px">
+          <div class="r1" style="inset:0"></div>
+          <div class="r2" style="inset:12px"></div>
+          <div class="r3" style="inset:24px"></div>
+          <div class="r4" style="inset:36px"></div>
+          <div class="glow" style="width:90px;height:90px"></div>
+          <img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא"
+            style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:52px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(2deg) brightness(1.1)"
+            onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <p class="desk-script" style="font-size:0.9rem;margin-bottom:8px;letter-spacing:0.12em">יוגה · נשימה · תרבות · סלעית</p>
+      <h1 class="desk-h1" style="font-size:2.8rem;margin-bottom:10px">בית ליוגה, <em>התפתחות</em> ונשימה</h1>
+      <p class="desk-sub" style="font-size:0.85rem;margin-bottom:24px">תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד, בלב אזור סלעית.</p>
+      <div class="btns">
+        <div class="desk-btn-p">לשיעורי יוגה</div>
+        <div class="desk-btn-s">אירועים קרובים</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DESK C -->
+<div>
+  <h2>דסקטופ — אפשרות C</h2>
+  <p class="label">מנדלות בפינות — פריים עדין, טקסט גדול במרכז ימין</p>
+  <div class="desk" id="dc">
+    <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=1400&q=85" alt=""/>
+    <div class="ov"></div>
+    <div class="corner-mdl">
+      <div class="mdl" style="width:280px;height:280px">
+        <div class="r1" style="inset:0"></div>
+        <div class="r2" style="inset:16px"></div>
+        <div class="r3" style="inset:32px"></div>
+      </div>
+    </div>
+    <div class="corner-mdl2">
+      <div class="mdl" style="width:220px;height:220px">
+        <div class="r1" style="inset:0"></div>
+        <div class="r2" style="inset:14px"></div>
+        <div class="r3" style="inset:28px"></div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="text-block">
+        <p class="desk-script" style="font-size:1rem;margin-bottom:16px;letter-spacing:0.1em">יוגה · נשימה · תרבות · סלעית</p>
+        <h1 class="desk-h1" style="font-size:3.2rem;margin-bottom:18px">בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+        <p class="desk-sub" style="font-size:0.9rem;margin-bottom:28px;max-width:320px">תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד.</p>
+        <div class="btns">
+          <div class="desk-btn-p">לשיעורי יוגה</div>
+          <div class="desk-btn-s">אירועים קרובים</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DESK D -->
+<div>
+  <h2>דסקטופ — אפשרות D</h2>
+  <p class="label">מנדלה קטנה מסביב לאייקון בניווט</p>
+  <div class="desk" id="dd">
+    <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=1400&q=85" alt=""/>
+    <div class="ov"></div>
+    <nav class="nav-bar">
+      <div class="nav-logo-wrap">
+        <div class="r1"></div>
+        <div class="r2"></div>
+        <img class="nav-logo-img" src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא" onerror="this.style.display='none'"/>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">ראשי</a></li>
+        <li><a href="#">יוגה</a></li>
+        <li><a href="#">תוכן ותרבות</a></li>
+        <li><a href="#">אירועים פרטיים</a></li>
+      </ul>
+      <div class="nav-cta-btn">צור קשר</div>
+    </nav>
+    <div class="content">
+      <div class="text-block">
+        <p class="desk-script" style="font-size:1rem;margin-bottom:14px;letter-spacing:0.1em">יוגה · נשימה · תרבות · סלעית</p>
+        <h1 class="desk-h1" style="font-size:3.2rem;margin-bottom:16px">בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+        <p class="desk-sub" style="font-size:0.9rem;margin-bottom:26px;max-width:320px">תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד, בלב אזור סלעית.</p>
+        <div class="btns">
+          <div class="desk-btn-p">לשיעורי יוגה</div>
+          <div class="desk-btn-s">אירועים קרובים</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DESK E -->
+<div>
+  <h2>דסקטופ — אפשרות E</h2>
+  <p class="label">מנדלה ענקית שקופה ברקע + מנדלה קטנה מעל הטקסט</p>
+  <div class="desk" id="de">
+    <img class="bg" src="https://plus.unsplash.com/premium_photo-1663047487227-0f3cd88ed8aa?w=1400&q=85" alt=""/>
+    <div class="ov"></div>
+    <div class="bg-mdl">
+      <div class="mdl" style="width:560px;height:560px">
+        <div class="r1" style="inset:0"></div>
+        <div class="r2" style="inset:28px"></div>
+        <div class="r3" style="inset:56px"></div>
+        <div class="r4" style="inset:84px"></div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="text-block">
+        <div class="mdl-small">
+          <div class="mdl" style="width:72px;height:72px;margin-bottom:22px">
+            <div class="r1" style="inset:0"></div>
+            <div class="r2" style="inset:6px"></div>
+            <div class="glow" style="width:36px;height:36px"></div>
+            <img src="https://static.wixstatic.com/media/38a166_6eafcf5cf78c47f3ace4bc9e6ed5fdd2~mv2.png" alt="לילא"
+              style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:24px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(3) brightness(1.1)"
+              onerror="this.style.display='none'"/>
+          </div>
+        </div>
+        <p class="desk-script" style="font-size:1rem;margin-bottom:14px;letter-spacing:0.1em">יוגה · נשימה · תרבות · סלעית</p>
+        <h1 class="desk-h1" style="font-size:3.4rem;margin-bottom:18px">בית ליוגה,<br/><em>התפתחות</em><br/>ונשימה</h1>
+        <p class="desk-sub" style="font-size:0.93rem;margin-bottom:30px;max-width:340px">תרגול יומיומי, ריפוי בצלילים, ותוכן תרבותי — כולם יחד, בלב אזור סלעית.</p>
+        <div class="btns">
+          <div class="desk-btn-p">לשיעורי יוגה</div>
+          <div class="desk-btn-s">אירועים קרובים</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
