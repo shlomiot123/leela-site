@@ -31,8 +31,32 @@
 .instructor-styles { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
 .instructor-styles span { padding:3px 10px; background:rgba(123,158,135,0.1); border-radius:12px; font-size:0.72rem; color:var(--sage); }
 
-.pricing-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+.pricing-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+.price-card { padding:24px 16px !important; }
+.price-num { font-size:2.4rem !important; }
+.price-unit { margin:4px 0 12px !important; font-size:0.76rem !important; }
+.price-features { margin-bottom:16px !important; }
+.price-features li { padding:4px 0 !important; font-size:0.82rem !important; }
+
 .sched-wrap { overflow-x:auto; border-radius:var(--radius); box-shadow:var(--shadow); }
+
+/* Schedule scroll hint */
+.sched-container { position:relative; }
+.sched-scroll-hint {
+  display:none; justify-content:center; align-items:center; gap:8px;
+  padding:8px 0 2px;
+  font-size:0.73rem; color:var(--brown-xl); letter-spacing:0.06em;
+  user-select:none; pointer-events:none;
+}
+.sched-hint-arrows {
+  display:inline-flex; gap:6px; align-items:center;
+  animation:hint-sway 1.6s ease-in-out infinite;
+}
+@keyframes hint-sway {
+  0%,100% { transform:translateX(0); }
+  30% { transform:translateX(-6px); }
+  70% { transform:translateX(6px); }
+}
 
 @media(max-width:900px){
   .style-cards { grid-template-columns:1fr 1fr; }
@@ -42,6 +66,8 @@
 @media(max-width:640px){
   /* Hero: stronger overlay so text is readable */
   .page-hero-overlay { background:linear-gradient(to top, rgba(247,243,238,0.98) 0%, rgba(247,243,238,0.88) 50%, rgba(247,243,238,0.25) 100%) !important; }
+  /* Show scroll hint */
+  .sched-scroll-hint { display:flex; }
 
   /* Style cards: compact 2-col */
   .style-cards { grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
@@ -374,6 +400,7 @@
     <span class="section-label reveal">לוח זמנים</span>
     <h2 class="section-title reveal d1">מערכת <em>שבועית</em></h2>
     <p class="section-body reveal d2" style="margin-bottom:40px">השיעורים מתקיימים בלילא — אזור תעשייה סלית. כל שיעור 75-90 דקות.</p>
+    <div class="sched-container">
     <div class="sched-wrap reveal">
       <table class="schedule-table">
         <thead>
@@ -421,6 +448,14 @@
         </tbody>
       </table>
     </div>
+    <div class="sched-scroll-hint">
+      <div class="sched-hint-arrows">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10 4L6 8l4 4"/></svg>
+        <span>גלול לצדדים</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 4l4 4-4 4"/></svg>
+      </div>
+    </div>
+    </div><!-- /sched-container -->
     <p style="font-size:0.8rem;color:var(--brown-xl);margin-top:16px;text-align:center">* שישי לסירוגין: שבוע ראשון האת'ה עם גל, שבוע שני קלה עם ניצן</p>
   </div>
 </section>

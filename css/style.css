@@ -900,7 +900,9 @@ footer {
 
   /* ── Footer ── */
   footer { padding: 44px 20px 24px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .footer-grid > div:last-child { grid-column: 1 / -1; }
   .footer-col { padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); }
   .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
   .footer-desc { max-width: 100%; font-size: 0.82rem; }

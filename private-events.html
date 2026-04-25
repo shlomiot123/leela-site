@@ -29,7 +29,7 @@
 .etype-card:hover img{transform:scale(1.06)}
 .etype-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(61,53,48,0.9) 0%,rgba(61,53,48,0.2) 50%,transparent 100%);transition:background 0.4s}
 .etype-card:hover .etype-card-overlay{background:linear-gradient(to top,rgba(94,126,107,0.88) 0%,rgba(61,53,48,0.35) 60%,transparent 100%)}
-.etype-card-body{position:absolute;bottom:0;left:0;right:0;padding:28px;color:white}
+.etype-card-body{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px;color:white}
 .etype-card-num{display:block;font-size:0.65rem;letter-spacing:0.22em;opacity:0.55;margin-bottom:8px}
 .etype-card-body h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:400;margin-bottom:6px}
 .etype-card-body p{font-size:0.8rem;line-height:1.6;opacity:0;max-height:0;overflow:hidden;transition:opacity 0.35s,max-height 0.4s;color:rgba(255,255,255,0.85)}
@@ -64,6 +64,13 @@
 .pc-list li::before{content:'—';position:absolute;right:0;color:var(--sage);font-size:0.7rem;top:1px}
 .pc-tag{display:inline-block;margin-top:10px;font-size:0.72rem;padding:5px 14px;border:1px solid rgba(196,168,130,0.4);border-radius:20px;color:var(--brown-l)}
 
+/* ─── PE Stats ─── */
+.pe-stats-row{display:flex;gap:0;margin:24px 0 32px;background:rgba(61,53,48,0.08);border-radius:14px;border:1px solid rgba(196,168,130,0.22);width:fit-content;overflow:hidden}
+.pe-stat-item{display:flex;flex-direction:column;align-items:center;padding:16px 28px;text-align:center}
+.pe-stat-num{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--brown);line-height:1;display:block}
+.pe-stat-label{font-size:0.63rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--brown-xl);margin-top:5px}
+.pe-stat-div{width:1px;background:rgba(196,168,130,0.3);align-self:stretch;margin:12px 0}
+
 /* ─── Image mosaic ─── */
 .img-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:200px 160px;gap:10px}
 .img-mosaic img{width:100%;height:100%;object-fit:cover;border-radius:12px}
@@ -76,9 +83,9 @@
 @media(max-width:900px){
   .pe-hero-content{padding:40px 24px}
   .etype-grid{grid-template-columns:1fr 1fr}
-  .amenities-list{grid-template-columns:1fr}
-  .amenity-item:nth-child(odd){border-left:none}
-  .amenity-item{padding:18px 16px}
+  .amenity-item{padding:16px 14px}
+  .amenity-name{font-size:0.85rem}
+  .amenity-desc{font-size:0.74rem}
   .pricing-grid{grid-template-columns:1fr 1fr}
   .img-mosaic{grid-template-columns:1fr;grid-template-rows:auto}
   .img-mosaic img{height:180px}
@@ -88,9 +95,12 @@
   /* Hero: strong overlay so dark text is readable across full height */
   .page-hero-overlay { background:linear-gradient(to top, rgba(247,243,238,0.97) 0%, rgba(247,243,238,0.82) 60%, rgba(247,243,238,0.35) 100%) !important; }
 
-  /* Hero stat row: wrap & collapse separator */
-  .page-hero-content > div[style*="gap:32px"] { gap:14px !important; flex-wrap:wrap; justify-content:center; }
-  .page-hero-content > div[style*="gap:32px"] > div[style*="width:1px"] { display:none !important; }
+  /* Stats row */
+  .pe-stats-row { width:100%; justify-content:space-around; }
+  .pe-stat-item { padding:12px 14px; }
+  .pe-stat-num { font-size:1.9rem; }
+  .pe-stat-label { font-size:0.58rem; }
+  .pe-stat-div { margin:8px 0; }
 
   /* Space section: 1-col */
   .section-inner > div[style*="grid-template-columns:1fr 1fr"] { display:block !important; }
@@ -158,12 +168,21 @@
     <span class="section-label reveal">אירוע פרטי בלילא</span>
     <h1 class="reveal d1">צרו זיכרון<br/><em>שישאר לנצח</em></h1>
     <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--brown-l);max-width:520px;font-weight:300;font-style:italic;line-height:1.7;margin:16px 0 28px" class="reveal d2">מרחב ייחודי בלב הטבע — לאירועים שמדברים ישר אל הלב.</p>
-    <div style="display:flex;gap:32px;margin-bottom:28px" class="reveal d2">
-      <div><span style="font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--brown);display:block;line-height:1">40</span><small style="font-size:0.68rem;letter-spacing:0.15em;color:var(--brown-xl);text-transform:uppercase">אנשים</small></div>
-      <div style="width:1px;background:rgba(196,168,130,0.3)"></div>
-      <div><span style="font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--brown);display:block;line-height:1">3</span><small style="font-size:0.68rem;letter-spacing:0.15em;color:var(--brown-xl);text-transform:uppercase">שעות מינימום</small></div>
-      <div style="width:1px;background:rgba(196,168,130,0.3)"></div>
-      <div><span style="font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--brown);display:block;line-height:1">6</span><small style="font-size:0.68rem;letter-spacing:0.15em;color:var(--brown-xl);text-transform:uppercase">סוגי אירועים</small></div>
+    <div class="pe-stats-row reveal d2">
+      <div class="pe-stat-item">
+        <span class="pe-stat-num">40</span>
+        <span class="pe-stat-label">אנשים</span>
+      </div>
+      <div class="pe-stat-div"></div>
+      <div class="pe-stat-item">
+        <span class="pe-stat-num">3</span>
+        <span class="pe-stat-label">שעות מינימום</span>
+      </div>
+      <div class="pe-stat-div"></div>
+      <div class="pe-stat-item">
+        <span class="pe-stat-num">6</span>
+        <span class="pe-stat-label">סוגי אירועים</span>
+      </div>
     </div>
     <div style="display:flex;gap:14px;flex-wrap:wrap" class="reveal d3">
       <a href="#inquiry-form" class="btn-primary">פנו אלינו לאירוע</a>
